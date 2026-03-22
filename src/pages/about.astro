@@ -1,0 +1,20 @@
+---
+import Layout from "@layouts/Layout.astro";
+
+const lorem =
+  "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, voluptatum. Perspiciatis repudiandae, ex, dolores dignissimos non dolorem minima, nobis esse neque atque aperiam explicabo obcaecati ipsa repellendus. Adipisci, ab animi!";
+
+const gen = Array.from({ length: 100 }, () => lorem).join("\n\n\n\n");
+---
+
+<Layout title="About Me">
+  <div class="placeholder">{gen}</div>
+</Layout>
+
+<style>
+  .placeholder {
+    border-radius: 8px;
+    color: #888;
+    min-height: 50vh;
+  }
+</style>

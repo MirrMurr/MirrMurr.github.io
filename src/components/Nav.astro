@@ -1,0 +1,253 @@
+---
+import clsx from "clsx";
+
+import BurgerIcon from "@assets/burger-menu.svg";
+import CloseIcon from "@assets/close.svg";
+import MyName from "@components/MyName.astro";
+import { pages } from "@utils/navigation";
+
+const currentPath = new URL(Astro.request.url).pathname;
+---
+
+<nav class="navbar">
+  <ul class="nav-menu">
+    {pages.map(({ href, label }) => (
+      <li>
+        <a href={href} class={clsx({ active: currentPath === href })}>
+          {label}
+        </a>
+      </li>
+    ))}
+  </ul>
+
+  <span class="navbar-title"><MyName /></span>
+
+  <button class="burger-menu-button" id="burger-menu-button" aria-label="Toggle menu">
+    <img src={BurgerIcon.src} class="burger-menu-icon burger-icon" />
+    <img src={CloseIcon.src} class="burger-menu-icon close-icon" />
+  </button>
+
+  <div class="mobile-menu" id="mobile-menu">
+    <ul class="mobile-nav-menu">
+      {pages.map(({ href, label }) => (
+        <li>
+          <a href={href} class={clsx({ active: currentPath === href })}>
+            {label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</nav>
+
+
+<style>
+  :root {
+    --nav-item-padding: 0;
+    --nav-item-padding-scale: 1.8;
+    --theme-color: var(--primary-color);
+    --header-height: 4rem;
+  }
+
+  .navbar {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: var(--header-height);
+    min-height: var(--header-height);
+    position: sticky;
+    top: 0;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--header-color);
+    box-shadow: 0 2px 8px color-mix(in srgb, var(--header-color) 50%, transparent);
+    z-index: 100;
+  }
+
+  .nav-menu {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  li {
+    margin: 0;
+    transition: transform 0.2s ease, margin 0.3s ease, padding 0.3s ease;
+    padding: var(--nav-item-padding);
+  }
+
+  a.active::after {
+    width: 100%;
+    background-color: var(--theme-color);
+  }
+
+  a.active, .mobile-nav-menu a.active {
+    font-weight: 500;
+  }
+
+  li:hover {
+    padding-left: calc(var(--nav-item-padding) * var(--nav-item-padding-scale));
+    padding-right: calc(var(--nav-item-padding) * var(--nav-item-padding-scale));
+  }
+
+  li:first:hover {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  li:last:hover {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .burger-menu-button {
+    display: none;
+    flex-direction: column;
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .burger-menu-icon {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transition: opacity 0.3s ease;
+  }
+
+  .burger-icon {
+    opacity: 1;
+  }
+
+  .close-icon {
+    opacity: 0;
+  }
+
+  .burger-menu-button.active .burger-icon {
+    opacity: 0;
+  }
+
+  .burger-menu-button.active .close-icon {
+    opacity: 1;
+    height: 2rem;
+  }
+
+  .mobile-menu {
+    position: fixed;
+    left: -100%;
+    top: var(--header-height);
+    flex-direction: column;
+    background-color: var(--header-color);
+    width: 100%;
+    text-align: center;
+    transition: left 0.3s ease;
+    box-shadow: 0 16px 15px rgba(0, 0, 0, 0.1);
+    z-index: 99;
+    max-height: calc(100vh - var(--header-height));
+    overflow-y: auto;
+  }
+
+  .mobile-menu.active {
+    left: 0;
+  }
+
+  .mobile-nav-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mobile-nav-menu li {
+    padding: 1rem 0;
+    border-top: 1px solid #e0e0e0;
+  }
+
+  .mobile-nav-menu li:last-of-type {
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .mobile-nav-menu a {
+    display: block;
+    padding: 0.5rem 0;
+  }
+
+  .mobile-nav-menu a.active {
+    color: var(--theme-color);
+  }
+
+  .mobile-nav-menu a::after {
+    display: none;
+  }
+
+  .navbar-title {
+    display: none;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: black;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  @media (max-width: 568px) {
+    .nav-menu {
+      display: none;
+    }
+
+    .burger-menu-button {
+      display: flex;
+    }
+
+    .navbar {
+      justify-content: left;
+      padding: 0 1rem;
+    }
+
+    .navbar-title {
+      display: block;
+    }
+  }
+</style>
+
+<script>
+  const burgerBtn = document.getElementById("burger-menu-button");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const mobileLinks = mobileMenu?.querySelectorAll("a");
+
+  burgerBtn?.addEventListener("click", () => {
+    burgerBtn?.classList.toggle("active");
+    mobileMenu?.classList.toggle("active");
+  });
+
+  // Close menu when a link is clicked
+  mobileLinks?.forEach((link) => {
+    link?.addEventListener("click", () => {
+      burgerBtn?.classList.remove("active");
+      mobileMenu?.classList.remove("active");
+    });
+  });
+
+  // Close menu when clicking outside
+  document.addEventListener("click", (event) => {
+    const isClickInsideMenu = mobileMenu?.contains(event.target as Node);
+    const isClickInsideButton = burgerBtn?.contains(event.target as Node);
+
+    if (!isClickInsideMenu && !isClickInsideButton && mobileMenu?.classList.contains("active")) {
+      burgerBtn?.classList.remove("active");
+      mobileMenu?.classList.remove("active");
+    }
+  });
+</script>

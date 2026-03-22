@@ -1,0 +1,38 @@
+---
+import GitHub from "@assets/github.svg";
+---
+
+<footer>
+  <p>&copy; 2026 Adam Kara's portfolio website. All rights reserved.</p>
+  <p>Made with ☕ by <a href="https://github.com/MirrMurr" target="_blank" class="github-link">Adam Kara<img src={GitHub.src} alt="GitHub" class="github-icon" loading="lazy" /></a></p>
+</footer>
+
+<style>
+  footer {
+    display: flex;
+    flex-direction: column;
+    min-height: 4rem;
+    border-top: 1px solid #e0e0e0;
+    padding: 1rem 0;
+    font-weight: 300;
+    text-align: center;
+  }
+
+  p {
+    font-size: 0.9rem;
+    color: #777;
+    margin: 0.25rem 0;
+  }
+
+  .github-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-weight: 400;
+  }
+
+  .github-icon {
+    width: 14px;
+    height: 14px;
+  }
+</style>

@@ -1,0 +1,114 @@
+---
+import Nav from "@components/Nav.astro";
+import Footer from "@components/Footer.astro";
+import ScrollToTop from "@components/ScrollToTop.astro";
+
+interface Props {
+  title: string;
+  favicon?: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Portfolio website" />
+    <link rel="icon" type="image/svg+xml" href="src/assets/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link href="https://fonts.googleapis.com/css2?family=Bitcount+Prop+Double+Ink:wght@100..900&family=Press+Start+2P&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Rubik+80s+Fade&family=Zen+Dots&display=swap" rel="stylesheet">
+
+    <title>{title}</title>
+  </head>
+  <body>
+    <Nav />
+    <div class="page-container">
+      <main>
+        <slot />
+      </main>
+      <ScrollToTop />
+      <Footer />
+    </div>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --primary-color: rgb(190, 56, 56);
+    --secondary-color: #1c1c1c;
+    --off-white: rgb(246, 246, 246);
+
+    --header-color: white;
+    --background-color: var(--off-white);
+    --text-color: #000000;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  *::selection {
+    background-color: var(--primary-color);
+    color: white;
+  }
+
+  html,
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family:  "Roboto Condensed", "Bitcount Prop Double Ink", systems-ui, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-optical-sizing: auto;
+    font-style: normal;
+    text-align: justify;
+  }
+
+  .page-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin: 0 clamp(1rem, 15vw, 33vw);
+    background-color: var(--background-color);
+  }
+
+  main {
+    padding: 2rem 0;
+    flex: 1;
+  }
+
+  a {
+    text-decoration: none;
+    color: black;
+    position: relative;
+    display: inline-block;
+    font-weight: 300;
+  }
+
+  a::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: var(--text-color);
+    transition: width 0.3s ease;
+  }
+
+  a:hover::after {
+    width: 100%;
+  }
+
+  p {
+    font-size: 14px;
+  }
+</style>
