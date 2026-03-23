@@ -1,9 +1,55 @@
 ---
 import Hello from "@components/Hello.astro";
+import Grid from "@components/layout/Grid.astro";
+import Overlay from "@components/Overlay.astro";
 import Layout from "@layouts/Layout.astro";
+import { pages } from "@utils/navigation";
 ---
 
 <Layout title="Welcome! 🍻">
   <Hello name="Visitor" />
-  <p>This is the home page.</p>
+
+  <br />
+
+  <p>Welcome to my portfolio website! I'm a software engineer with experience in web development, machine learning, and data science. Feel free to explore and if you have any questions, don't hesitate to contact me!</p>
+
+  <!--
+
+  TODOs:
+  - adjust layout margin so that on mobile screens, that Overlay is edge-to-edge, but the content has the same margin as the rest of the site on larger screens
+  - add View Transition animation when navigating to project pages from the index page
+  -->
+
+  <br />
+
+  <Grid>
+   {pages.filter((page) => page.label !== 'Home').map(({ href, label, color }) => (
+      <a href={href}>
+        <Overlay title={label} dimmed dimAmount={0.5}>
+          <div class="grid-item" style={{ backgroundColor: color }} />
+        </Overlay>
+      </a>
+    ))}
+  </Grid>
+
 </Layout>
+
+
+<style>
+  .grid-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    aspect-ratio: 1;
+    background-color: #eee;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  a::after {
+    display: none;
+  }
+
+</style>

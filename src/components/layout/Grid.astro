@@ -1,0 +1,83 @@
+---
+import clsx from "clsx";
+
+interface Props {
+  cols?: 1 | 2 | 3 | 4 | 5 | 6;
+  gap?: string;
+}
+
+const { cols, gap } = Astro.props;
+
+const gapMap: Record<string, string> = {
+  small: "0.5rem",
+  medium: "1rem",
+  large: "1.5rem",
+};
+
+const gapValue = gap ? gapMap[gap] || gap : "0";
+---
+
+<div class={clsx('grid', `grid-cols-${cols}`)} style={`gap: ${gapValue};`}>
+  <slot />
+</div>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  @media only screen and (min-width: 368px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media only screen and (min-width: 568px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media only screen and (min-width: 1024px) {
+    .grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media only screen and (min-width: 1440px) {
+    .grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  @media only screen and (min-width: 1920px) {
+    .grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .grid-cols-1 {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .grid-cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid-cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .grid-cols-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .grid-cols-5 {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .grid-cols-6 {
+    grid-template-columns: repeat(6, 1fr);
+  }
+</style>
