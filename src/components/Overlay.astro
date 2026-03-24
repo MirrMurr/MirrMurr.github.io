@@ -13,10 +13,14 @@ const { title, description, dimmed = false, dimAmount = 0.3 } = Astro.props;
 
 <div class="overlay" style={`--dim-amount: ${dimAmount};`}>
   <div class="overlay-content">
-    <h1>{title}</h1>
+    <div class="overlay-header">
+      <h1>{title}</h1>
+    </div>
     {description && <p>{description}</p>}
   </div>
+
   <div class={clsx("overlay-shadow", { "overlay-shadow-dimmed": dimmed })} />
+
   <slot />
 </div>
 
@@ -38,6 +42,12 @@ const { title, description, dimmed = false, dimAmount = 0.3 } = Astro.props;
     width: 100%;
     height: 100%;
     padding: 1rem;
+  }
+
+  .overlay-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
   }
 
   .overlay-shadow {
