@@ -1,8 +1,20 @@
 ---
+import Box from "@components/Box.astro";
+import Overlay from "@components/Overlay.astro";
 import Layout from "@layouts/Layout.astro";
+import { pages } from "@utils/navigation";
+
+const {
+  color = "",
+  label = "",
+  bannerImage = "",
+} = pages.find((page) => page.label === "Education") || {};
 ---
 
-<Layout title="Education">
-  <h1>Education</h1>
+<Layout title={label}>
+  <Overlay title={label}>
+     <Box image={bannerImage} color={color} height="200px" width="100%" />
+  </Overlay>
+  <br />
   <p>This is the education page.</p>
 </Layout>

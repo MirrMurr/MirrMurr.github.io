@@ -1,34 +1,39 @@
 ---
 
+interface Props {
+  fontSize?: string;
+  gap?: string;
+}
+
+const { fontSize, gap } = Astro.props;
 ---
 
-<a href="/" class="my-name">
-  <span class="firstname">Adam</span>
-  <span class="lastname">Kara</span>
-</a>
+<span class="my-name-container">
+  <span class="my-name" style={`gap: ${gap || "0.5rem"}`}>
+    <span class="firstname" style={`font-size: ${fontSize || "auto"}`}>Adam</span>
+    <span class="lastname" style={`font-size: ${fontSize || "auto"}`}>Kara</span>
+  </span>
+</span>
 
 <style>
+  .my-name-container {
+    display: inline-block;
+  }
+
   .my-name {
     display: flex;
-    gap: 0.5rem;
     align-items: baseline;
   }
 
   .firstname {
-    font-size: 1.5rem;
     font-weight: 700;
     color: var(--primary-color);
     display: block;
   }
 
   .lastname {
-    font-size: 1.5rem;
     font-weight: 300;
     color: var(--primary-color);
     display: block;
-  }
-
-  a::after {
-    display: none;
   }
 </style>

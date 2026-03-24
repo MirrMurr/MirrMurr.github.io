@@ -1,0 +1,47 @@
+---
+import GitHub from "@assets/icons/github.svg";
+import WhatsApp from "@assets/icons/whatsapp.svg";
+// import Phone from "@assets/icons/phone.svg";
+import EmailLetter from "@assets/icons/email-letter.svg";
+import LinkedIn from "@assets/icons/linkedin-outline.svg";
+import clsx from "clsx";
+import { Image } from "astro:assets";
+
+interface Props {
+  layout?: "row" | "grid";
+}
+
+const { layout = "row" } = Astro.props;
+---
+
+<div class={clsx("contact-icons", `contact-icons--${layout}`)}>
+  <Image src={EmailLetter} alt="Email" class="contact-icon" loading="lazy" />
+  <Image src={WhatsApp} alt="WhatsApp" class="contact-icon" loading="lazy" />
+  <Image src={GitHub} alt="GitHub" class="contact-icon" loading="lazy" />
+  <Image src={LinkedIn} alt="LinkedIn" class="contact-icon" loading="lazy" />
+</div>
+
+<style>
+  .contact-icons {
+    width: fit-content;
+    display: flex;
+    gap: 1rem;
+    color: var(--primary-color);
+  }
+
+  .contact-icon {
+    width: 2rem;
+    height: 2rem;
+    background-color: transparent;
+  }
+
+  .contact-icons--grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .contact-icons--row {
+    justify-content: center;
+  }
+</style>

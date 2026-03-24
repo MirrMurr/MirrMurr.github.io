@@ -1,0 +1,37 @@
+---
+import Hello from "./Hello.astro";
+import MyName from "./MyName.astro";
+
+const skills = [
+  "Architectural software design",
+  "Front- & Backend Web Development",
+  "UI/UX Design",
+  "Machine Learning",
+  "FinTech",
+  "Data Science",
+];
+
+const interests = [
+  "playing instruments 🎸",
+  "skateboarding 🛹",
+  "training my body 🏋🏻‍♂️",
+  "eating healthy 🥗",
+  "going to raves ⛓️",
+];
+---
+
+<Hello name="Visitor" />
+<br />
+<p>Welcome to my portfolio website! My name is <MyName gap="0.2rem" />. Professionally, I'm a software engineer with experience and degrees in {skills.map((skill, i) => {
+  const isLast = i === skills.length - 1;
+  const isSecondLast = i === skills.length - 2;
+  if (isLast) {
+    return <span>and <strong>{skill}</strong></span>
+  } else if (isSecondLast) {
+    return <span><strong>{skill}</strong> </span>;
+  } else {
+    return <span><strong>{skill}</strong>, </span>;
+  }
+})}. In my civil life, my passions include {interests.join(', ')}.</p>
+<br />
+<p>Feel free to explore and if you have any questions, don't hesitate to contact me!</p>

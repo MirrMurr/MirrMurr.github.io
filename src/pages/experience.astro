@@ -1,8 +1,22 @@
 ---
+import Box from "@components/Box.astro";
+import Overlay from "@components/Overlay.astro";
 import Layout from "@layouts/Layout.astro";
+import { pages } from "@utils/navigation";
+
+const {
+  color = "",
+  label = "",
+  bannerImage = "",
+} = pages.find((page) => page.label === "Experience") || {};
 ---
 
-<Layout title="Experience">
-  <h1>Experience</h1>
+<Layout title={label}>
+  <Overlay title={label}>
+     <Box color={color} image={bannerImage} height="200px" width="100%" backgroundPosition="25% 52%" />
+  </Overlay>
+  <br />
   <p>This is the experience page.</p>
+
+  <!-- TODO: Add Timeline and Skills -->
 </Layout>

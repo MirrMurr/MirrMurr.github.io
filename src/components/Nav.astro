@@ -1,8 +1,8 @@
 ---
 import clsx from "clsx";
 
-import BurgerIcon from "@assets/burger-menu.svg";
-import CloseIcon from "@assets/close.svg";
+import BurgerIcon from "@assets/icons/burger-menu.svg";
+import CloseIcon from "@assets/icons/close.svg";
 import MyName from "@components/MyName.astro";
 import { pages } from "@utils/navigation";
 
@@ -20,7 +20,7 @@ const currentPath = new URL(Astro.request.url).pathname;
     ))}
   </ul>
 
-  <span class="navbar-title"><MyName /></span>
+  <span class="navbar-title"><a href="/"><MyName /></a></span>
 
   <button class="burger-menu-button" id="burger-menu-button" aria-label="Toggle menu">
     <img src={BurgerIcon.src} class="burger-menu-icon burger-icon" />
@@ -38,6 +38,8 @@ const currentPath = new URL(Astro.request.url).pathname;
       ))}
     </ul>
   </div>
+
+  <div id="backdrop" class="backdrop hidden" />
 </nav>
 
 
@@ -62,7 +64,7 @@ const currentPath = new URL(Astro.request.url).pathname;
     justify-content: center;
     align-items: center;
     background-color: var(--header-color);
-    box-shadow: 0 2px 8px color-mix(in srgb, var(--header-color) 50%, transparent);
+    box-shadow: 0 2px 8px color-mix(in srgb, var(--background-color) 50%, transparent);
     z-index: 100;
   }
 
@@ -76,6 +78,7 @@ const currentPath = new URL(Astro.request.url).pathname;
     height: 100%;
     justify-content: center;
     align-items: center;
+    z-index: 99;
   }
 
   li {
@@ -117,6 +120,7 @@ const currentPath = new URL(Astro.request.url).pathname;
     position: relative;
     width: 2rem;
     height: 2rem;
+    z-index: 99;
   }
 
   .burger-menu-icon {
@@ -199,6 +203,26 @@ const currentPath = new URL(Astro.request.url).pathname;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+    z-index: 99;
+  }
+
+  .navbar-title a::after {
+    display: none;
+  }
+
+  .backdrop {
+    display: sticky;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    z-index: 98;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .backdrop.hidden {
+    display: none;
   }
 
   @media (max-width: 568px) {
@@ -224,16 +248,21 @@ const currentPath = new URL(Astro.request.url).pathname;
 <script>
   const burgerBtn = document.getElementById("burger-menu-button");
   const mobileMenu = document.getElementById("mobile-menu");
+  const backdrop = document.getElementById("backdrop");
   const mobileLinks = mobileMenu?.querySelectorAll("a");
 
-  function toggleMobileMenu() {
+  function toggleMobileMenu(e: PointerEvent) {
+    e?.preventDefault();
+    e?.stopPropagation();
     burgerBtn?.classList.toggle("active");
     mobileMenu?.classList.toggle("open");
+    backdrop?.classList.toggle("hidden");
   }
 
   function closeMobileMenu() {
     burgerBtn?.classList.remove("active");
     mobileMenu?.classList.remove("open");
+    backdrop?.classList.add("hidden");
   }
 
   burgerBtn?.addEventListener("click", toggleMobileMenu);

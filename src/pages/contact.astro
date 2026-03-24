@@ -1,8 +1,22 @@
 ---
+import Box from "@components/Box.astro";
+import ContactIcons from "@components/ContactIcons.astro";
+import Overlay from "@components/Overlay.astro";
 import Layout from "@layouts/Layout.astro";
+import { pages } from "@utils/navigation";
+
+const {
+  color = "",
+  label = "",
+  bannerImage = "",
+} = pages.find((page) => page.label === "Contact") || {};
 ---
 
-<Layout title="Contact">
+<Layout title={label}>
+  <Overlay title={label}>
+     <Box color={color} image={bannerImage} height="200px" width="100%" backgroundPosition="25% 35%" />
+  </Overlay>
+  <br />
   <h1>Contact Me</h1>
   <p>
     I'd love to hear from you! Whether you have a question, a project proposal,
@@ -15,8 +29,7 @@ import Layout from "@layouts/Layout.astro";
   <h2>Get in Touch</h2>
   <p>
     You can reach me through various channels. Feel free to send me an email,
-    connect with me on social media, or fill out the contact form below with
-    your message and I'll get back to you as soon as possible.
+    connect with me on social media and I'll get back to you as soon as possible.
   </p>
 
   <br />
@@ -33,7 +46,7 @@ import Layout from "@layouts/Layout.astro";
   <h2>Social Media</h2>
   <p>
     You can also find me on various social media platforms. Connect with me on
-    GitHub, LinkedIn, Twitter, or other platforms to stay updated with my
+    GitHub, LinkedIn, or other platforms to stay updated with my
     latest projects and insights.
   </p>
 
@@ -45,6 +58,10 @@ import Layout from "@layouts/Layout.astro";
     back from me within this timeframe, please feel free to follow up. I'm
     excited to hear about potential opportunities and collaborations!
   </p>
+
+  <br />
+
+  <ContactIcons layout="row" />
 </Layout>
 
 <style>

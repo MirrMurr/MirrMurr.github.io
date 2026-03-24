@@ -1,10 +1,11 @@
 ---
-import GitHub from "@assets/github.svg";
+import GitHub from "@assets/icons/github.svg";
+import { Image } from "astro:assets";
 ---
 
 <footer>
   <p>&copy; 2026 Adam Kara's portfolio website. All rights reserved.</p>
-  <p>Made with ☕ by <a href="https://github.com/MirrMurr" target="_blank" class="github-link">Adam Kara<img src={GitHub.src} alt="GitHub" class="github-icon" loading="lazy" /></a></p>
+  <p>Made with ☕ by <a href="https://github.com/MirrMurr" target="_blank" class="github-link">Adam Kara<Image src={GitHub} alt="GitHub" class="github-icon" loading="lazy" /></a></p>
 </footer>
 
 <style>

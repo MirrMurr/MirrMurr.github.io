@@ -1,0 +1,39 @@
+---
+interface Props {
+  width?: string;
+  height?: string;
+  color?: string;
+  image?: string;
+  aspectRatio?: number;
+  textColor?: string;
+  backgroundPosition?: string;
+}
+
+const {
+  width,
+  height,
+  aspectRatio,
+  color = "transparent",
+  textColor = "inherit",
+  image,
+  backgroundPosition = "center",
+} = Astro.props;
+
+const ratioStyle = aspectRatio ? `aspect-ratio: ${aspectRatio};` : "";
+const backgroundStyle = image
+  ? `background-image: url(${image}); background-size: cover; background-position: ${backgroundPosition};`
+  : `background-color: ${color};`;
+
+const style = `width: ${width || "auto"}; height: ${height || "auto"}; color: ${textColor}; ${backgroundStyle} ${ratioStyle}`;
+---
+
+<div class="box" style={style}>
+  <slot />
+</div>
+
+<style>
+  .box {
+    display: block;
+  }
+</style>
+

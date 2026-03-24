@@ -1,37 +1,31 @@
 ---
-import Hello from "@components/Hello.astro";
+import Box from "@components/Box.astro";
+import Hero from "@components/Hero.astro";
 import Grid from "@components/layout/Grid.astro";
 import Overlay from "@components/Overlay.astro";
 import Layout from "@layouts/Layout.astro";
 import { pages } from "@utils/navigation";
+
+/**
+ * TODOs:
+ * - [ ] add View Transition animation when navigating to project pages from the index page
+ * - [ ] add Timeline(Entry) components to experience and education pages
+ *
+ */
 ---
 
 <Layout title="Welcome! 🍻">
-  <Hello name="Visitor" />
-
+  <Hero />
   <br />
-
-  <p>Welcome to my portfolio website! I'm a software engineer with experience in web development, machine learning, and data science. Feel free to explore and if you have any questions, don't hesitate to contact me!</p>
-
-  <!--
-
-  TODOs:
-  - adjust layout margin so that on mobile screens, that Overlay is edge-to-edge, but the content has the same margin as the rest of the site on larger screens
-  - add View Transition animation when navigating to project pages from the index page
-  -->
-
-  <br />
-
   <Grid>
-   {pages.filter((page) => page.label !== 'Home').map(({ href, label, color }) => (
+   {pages.filter((page) => page.label !== 'Home').map(({ href, label, color = '', bannerImage = '', bannerImagePosition = '' }) => (
       <a href={href}>
         <Overlay title={label} dimmed dimAmount={0.5}>
-          <div class="grid-item" style={{ backgroundColor: color }} />
+          <Box image={bannerImage} color={color} width="100%" aspectRatio={1} backgroundPosition={bannerImagePosition} />
         </Overlay>
       </a>
     ))}
   </Grid>
-
 </Layout>
 
 
@@ -43,9 +37,9 @@ import { pages } from "@utils/navigation";
     align-items: center;
     width: 100%;
     aspect-ratio: 1;
-    background-color: #eee;
     padding: 1rem;
     text-align: center;
+    background-color: #eee;
   }
 
   a::after {

@@ -1,5 +1,14 @@
 ---
+import Box from "@components/Box.astro";
+import Overlay from "@components/Overlay.astro";
 import Layout from "@layouts/Layout.astro";
+import { pages } from "@utils/navigation";
+
+const {
+  color = "",
+  label = "",
+  bannerImage = "",
+} = pages.find((page) => page.label === "About Me") || {};
 
 const lorem =
   "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, voluptatum. Perspiciatis repudiandae, ex, dolores dignissimos non dolorem minima, nobis esse neque atque aperiam explicabo obcaecati ipsa repellendus. Adipisci, ab animi!";
@@ -7,14 +16,18 @@ const lorem =
 const gen = Array.from({ length: 100 }, () => lorem).join("\n\n\n\n");
 ---
 
-<Layout title="About Me">
+<Layout title={label}>
+  <Overlay title={label}>
+     <Box color={color} image={bannerImage} height="200px" width="100%" backgroundPosition="25% 70%" />
+  </Overlay>
+  <br />
   <div class="placeholder">{gen}</div>
 </Layout>
 
 <style>
   .placeholder {
+    color: var(--text-color-secondary);
     border-radius: 8px;
-    color: #888;
     min-height: 50vh;
   }
 </style>
