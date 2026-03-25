@@ -1,0 +1,29 @@
+---
+import { type PageInfo } from "@utils/pageData";
+import Overlay from "./Overlay.astro";
+import Box from "./Box.astro";
+import Tile from "./Tile.astro";
+
+interface Props extends Partial<PageInfo> {}
+
+const {
+  key = "",
+  label = "",
+  color = "",
+  bannerImage = "",
+  bannerImagePosition = "",
+} = Astro.props;
+---
+
+<Tile key={key}>
+  <Overlay title={label} dimmed dimAmount={0.01}>
+    <Box
+      color={color}
+      image={bannerImage}
+      height="200px"
+      width="100%"
+      backgroundPosition={bannerImagePosition}
+      loading="eager"
+    />
+  </Overlay>
+</Tile>

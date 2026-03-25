@@ -1,0 +1,11 @@
+---
+interface Props {
+  key: string;
+}
+
+const { key } = Astro.props;
+---
+
+<div id={`tile-${key}`} class="tile" data-id={key}>
+  <slot />
+</div>

@@ -1,20 +1,13 @@
 ---
-import Box from "@components/Box.astro";
-import Overlay from "@components/Overlay.astro";
+import SubPageHero from "@components/SubPageHero.astro";
 import Layout from "@layouts/Layout.astro";
 import { pages } from "@utils/pageData";
 
-const {
-  color = "",
-  label = "",
-  bannerImage = "",
-} = pages.find((page) => page.label === "Education") || {};
+const page = pages.find((page) => page.label === "Education");
 ---
 
-<Layout title={label}>
-  <Overlay title={label}>
-     <Box image={bannerImage} color={color} height="200px" width="100%" />
-  </Overlay>
+<Layout title={page?.label || ''}>
+  <SubPageHero {...page} />
   <br />
   <p>This is the education page.</p>
 </Layout>

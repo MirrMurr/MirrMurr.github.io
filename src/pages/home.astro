@@ -8,7 +8,6 @@ import { pages } from "@utils/pageData";
 
 const subPages = pages.filter((page) => page.label !== "Home");
 
-// TODO add View Transition animation when navigating to project pages from the index page
 // TODO add Timeline(Entry) components to experience and education pages
 // TODO animate timeline entries sliding in on scroll when they get into view (https://www.youtube.com/watch?v=Vcv01Czsq2Y)
 ---
@@ -17,15 +16,16 @@ const subPages = pages.filter((page) => page.label !== "Home");
   <Hero />
   <br />
   <Grid>
-   {subPages.map(({ key, href, label, bannerImage = '', bannerImagePosition = '' }) => (
-      <a href={href} class="tile reveal" data-id={key}>
-        <Overlay title={label} dimmed dimAmount={0.5}>
+   {subPages.map(({ key, href, label, color = '', bannerImage = '', bannerImagePosition = '' }) => (
+      <a href={href} class="tile reveal" data-id={key} id={`tile-${key}`}>
+        <Overlay title={label} dimmed dimAmount={0.45} lightOnHover>
           <Box
-            textColor="white"
             width="100%"
             aspectRatio={1}
             image={bannerImage}
             backgroundPosition={bannerImagePosition}
+            textColor="white"
+            color={color}
             loading="eager"
           />
         </Overlay>
@@ -51,14 +51,3 @@ const subPages = pages.filter((page) => page.label !== "Home");
     display: none;
   }
 </style>
-
-<!-- <script>
-  document.querySelectorAll('.tile').forEach(tile => {
-    tile?.addEventListener('click', () => {
-      const id = tile.dataset.id;
-      tile.style.viewTransitionName = `tile-${id}`;
-      tile.querySelector('img').style.viewTransitionName = `img-${id}`;
-      tile.querySelector('.title').style.viewTransitionName = `title-${id}`;
-    });
-  });
-</script> -->

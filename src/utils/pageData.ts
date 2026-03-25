@@ -1,4 +1,4 @@
-interface Page {
+export interface PageInfo {
   key: string;
   label: "Home" | "About Me" | "Education" | "Experience" | "Projects" | "Contact";
   href: string;
@@ -7,7 +7,7 @@ interface Page {
   bannerImagePosition?: string;
 }
 
-export const pages: Page[] = [
+export const pages: PageInfo[] = [
   {
     key: "home",
     href: "/home",
@@ -20,6 +20,7 @@ export const pages: Page[] = [
     label: "About Me",
     // color: "#4ecdc4",
     bannerImage: "/images/lego.jpeg",
+    bannerImagePosition: "25% 70%",
   },
   {
     key: "education",
@@ -41,6 +42,7 @@ export const pages: Page[] = [
     label: "Projects",
     // color: "#feca57",
     bannerImage: "/images/prezar-demo.jpeg",
+    bannerImagePosition: "25% 25%",
   },
   {
     key: "contact",

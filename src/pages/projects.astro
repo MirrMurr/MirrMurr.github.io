@@ -1,20 +1,13 @@
 ---
-import Box from "@components/Box.astro";
-import Overlay from "@components/Overlay.astro";
+import SubPageHero from "@components/SubPageHero.astro";
 import Layout from "@layouts/Layout.astro";
 import { pages } from "@utils/pageData";
 
-const {
-  color = "",
-  label = "",
-  bannerImage = "",
-} = pages.find((page) => page.label === "Projects") || {};
+const page = pages.find((page) => page.label === "Projects");
 ---
 
-<Layout title={label}>
-  <Overlay title={label}>
-     <Box color={color} image={bannerImage} height="200px" width="100%" backgroundPosition="25% 25%" />
-  </Overlay>
+<Layout title={page?.label || ''}>
+  <SubPageHero {...page} />
   <br />
   <p>This is the projects page.</p>
 </Layout>

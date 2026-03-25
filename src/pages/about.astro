@@ -1,14 +1,9 @@
 ---
-import Box from "@components/Box.astro";
-import Overlay from "@components/Overlay.astro";
+import SubPageHero from "@components/SubPageHero.astro";
 import Layout from "@layouts/Layout.astro";
 import { pages } from "@utils/pageData";
 
-const {
-  color = "",
-  label = "",
-  bannerImage = "",
-} = pages.find((page) => page.label === "About Me") || {};
+const page = pages.find((page) => page.label === "About Me");
 
 const lorem =
   "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, voluptatum. Perspiciatis repudiandae, ex, dolores dignissimos non dolorem minima, nobis esse neque atque aperiam explicabo obcaecati ipsa repellendus. Adipisci, ab animi!";
@@ -16,17 +11,8 @@ const lorem =
 const gen = Array.from({ length: 100 }, () => lorem).join("\n\n\n\n");
 ---
 
-<Layout title={label}>
-  <Overlay title={label}>
-     <Box
-        color={color}
-        image={bannerImage}
-        height="200px"
-        width="100%"
-        backgroundPosition="25% 70%"
-        loading="eager"
-      />
-  </Overlay>
+<Layout title={page?.label || ''}>
+  <SubPageHero {...page} />
   <br />
   <div class="placeholder">{gen}</div>
 </Layout>
@@ -38,3 +24,10 @@ const gen = Array.from({ length: 100 }, () => lorem).join("\n\n\n\n");
     min-height: 50vh;
   }
 </style>
+
+<!-- <script>
+  document.querySelectorAll('.tile').forEach(tile => {
+    const id = tile.dataset.id;
+    tile.style.viewTransitionName = `tile-${id}`
+  });
+</script> -->
