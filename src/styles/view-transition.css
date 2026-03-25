@@ -1,0 +1,73 @@
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-group(root) {
+  animation: none;
+}
+
+::view-transition-old(*),
+::view-transition-new(*), {
+  /* Prevent the default animation,
+  so both views remain opacity:1 throughout the transition */
+  animation: none;
+  /* Use normal blending,
+  so the new view sits on top and obscures the old view */
+  mix-blend-mode: normal;
+  /* Make the height the same as the group,
+  meaning the view size might not match its aspect-ratio. */
+  height: 100%;
+  /* Clip any overflow of the view */
+  overflow: clip;
+}
+
+::view-transition-image-pair(*) {
+  overflow: clip;
+}
+
+/* AUTO-GENERATED BELOW */
+
+#tile-about { view-transition-name: tile-about; }
+#tile-about .overlay { view-transition-name: tile-overlay-about; }
+#tile-about .overlay .box { view-transition-name: tile-overlay-box-about; }
+#tile-about .overlay .box img { view-transition-name: tile-overlay-box-img-about; }
+#tile-about .overlay .overlay-content { view-transition-name: tile-overlay-overlay-content-about; }
+#tile-about .overlay .overlay-content .overlay-header { view-transition-name: tile-overlay-overlay-content-overlay-header-about; }
+#tile-about .overlay .overlay-content .overlay-header .overlay-title { view-transition-name: tile-overlay-overlay-content-overlay-header-overlay-title-about; }
+#tile-about .overlay .overlay-shadow { view-transition-name: tile-overlay-overlay-shadow-about; }
+
+#tile-education { view-transition-name: tile-education; }
+#tile-education .overlay { view-transition-name: tile-overlay-education; }
+#tile-education .overlay .box { view-transition-name: tile-overlay-box-education; }
+#tile-education .overlay .box img { view-transition-name: tile-overlay-box-img-education; }
+#tile-education .overlay .overlay-content { view-transition-name: tile-overlay-overlay-content-education; }
+#tile-education .overlay .overlay-content .overlay-header { view-transition-name: tile-overlay-overlay-content-overlay-header-education; }
+#tile-education .overlay .overlay-content .overlay-header .overlay-title { view-transition-name: tile-overlay-overlay-content-overlay-header-overlay-title-education; }
+#tile-education .overlay .overlay-shadow { view-transition-name: tile-overlay-overlay-shadow-education; }
+
+#tile-experience { view-transition-name: tile-experience; }
+#tile-experience .overlay { view-transition-name: tile-overlay-experience; }
+#tile-experience .overlay .box { view-transition-name: tile-overlay-box-experience; }
+#tile-experience .overlay .box img { view-transition-name: tile-overlay-box-img-experience; }
+#tile-experience .overlay .overlay-content { view-transition-name: tile-overlay-overlay-content-experience; }
+#tile-experience .overlay .overlay-content .overlay-header { view-transition-name: tile-overlay-overlay-content-overlay-header-experience; }
+#tile-experience .overlay .overlay-content .overlay-header .overlay-title { view-transition-name: tile-overlay-overlay-content-overlay-header-overlay-title-experience; }
+#tile-experience .overlay .overlay-shadow { view-transition-name: tile-overlay-overlay-shadow-experience; }
+
+#tile-projects { view-transition-name: tile-projects; }
+#tile-projects .overlay { view-transition-name: tile-overlay-projects; }
+#tile-projects .overlay .box { view-transition-name: tile-overlay-box-projects; }
+#tile-projects .overlay .box img { view-transition-name: tile-overlay-box-img-projects; }
+#tile-projects .overlay .overlay-content { view-transition-name: tile-overlay-overlay-content-projects; }
+#tile-projects .overlay .overlay-content .overlay-header { view-transition-name: tile-overlay-overlay-content-overlay-header-projects; }
+#tile-projects .overlay .overlay-content .overlay-header .overlay-title { view-transition-name: tile-overlay-overlay-content-overlay-header-overlay-title-projects; }
+#tile-projects .overlay .overlay-shadow { view-transition-name: tile-overlay-overlay-shadow-projects; }
+
+#tile-contact { view-transition-name: tile-contact; }
+#tile-contact .overlay { view-transition-name: tile-overlay-contact; }
+#tile-contact .overlay .box { view-transition-name: tile-overlay-box-contact; }
+#tile-contact .overlay .box img { view-transition-name: tile-overlay-box-img-contact; }
+#tile-contact .overlay .overlay-content { view-transition-name: tile-overlay-overlay-content-contact; }
+#tile-contact .overlay .overlay-content .overlay-header { view-transition-name: tile-overlay-overlay-content-overlay-header-contact; }
+#tile-contact .overlay .overlay-content .overlay-header .overlay-title { view-transition-name: tile-overlay-overlay-content-overlay-header-overlay-title-contact; }
+#tile-contact .overlay .overlay-shadow { view-transition-name: tile-overlay-overlay-shadow-contact; }
