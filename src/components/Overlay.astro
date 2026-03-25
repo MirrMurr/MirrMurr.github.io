@@ -1,4 +1,5 @@
 ---
+import { createCssVariables } from "@utils/styles";
 import clsx from "clsx";
 
 interface Props {
@@ -6,12 +7,17 @@ interface Props {
   description?: string;
   dimmed?: boolean;
   dimAmount?: number;
+  lightOnHover?: boolean;
 }
 
-const { title, description, dimmed = false, dimAmount = 0.3 } = Astro.props;
+const { title, description, dimmed = false, dimAmount = 0.3, lightOnHover = false } = Astro.props;
+
+const cssVars = createCssVariables({
+  "--dim-amount": dimAmount,
+});
 ---
 
-<div class="overlay" style={`--dim-amount: ${dimAmount};`}>
+<div class="overlay" style={cssVars}>
   <div class="overlay-content">
     <div class="overlay-header">
       <h1 class="overlay-title">{title}</h1>
@@ -19,7 +25,7 @@ const { title, description, dimmed = false, dimAmount = 0.3 } = Astro.props;
     {description && <p>{description}</p>}
   </div>
 
-  <div class={clsx("overlay-shadow", { "overlay-shadow-dimmed": dimmed })} />
+  <div class={clsx("overlay-shadow", { "overlay-shadow-dimmed": dimmed, "lightOnHover": lightOnHover })} />
 
   <slot />
 </div>
@@ -67,7 +73,7 @@ const { title, description, dimmed = false, dimAmount = 0.3 } = Astro.props;
     opacity: 1;
   }
 
-  .overlay:hover .overlay-shadow {
+  .overlay:hover .overlay-shadow.lightOnHover {
     opacity: 0;
   }
 </style>
