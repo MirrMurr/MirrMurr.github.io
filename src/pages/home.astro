@@ -3,6 +3,7 @@ import Box from "@components/Box.astro";
 import Hero from "@components/Hero.astro";
 import Grid from "@components/layout/Grid.astro";
 import Overlay from "@components/Overlay.astro";
+import Tile from "@components/Tile.astro";
 import Layout from "@layouts/Layout.astro";
 import { pages } from "@utils/pageData";
 
@@ -17,18 +18,20 @@ const subPages = pages.filter((page) => page.label !== "Home");
   <br />
   <Grid>
    {subPages.map(({ key, href, label, color = '', bannerImage = '', bannerImagePosition = '' }) => (
-      <a href={href} class="tile reveal" data-id={key} id={`tile-${key}`}>
-        <Overlay title={label} dimmed dimAmount={0.45} lightOnHover>
-          <Box
-            width="100%"
-            aspectRatio={1}
-            image={bannerImage}
-            backgroundPosition={bannerImagePosition}
-            textColor="white"
-            color={color}
-            loading="eager"
-          />
-        </Overlay>
+      <a href={href} class="reveal">
+        <Tile key={key}>
+          <Overlay title={label} dimmed dimAmount={0.45} lightOnHover>
+            <Box
+              width="100%"
+              aspectRatio={1}
+              image={bannerImage}
+              backgroundPosition={bannerImagePosition}
+              textColor="white"
+              color={color}
+              loading="eager"
+            />
+          </Overlay>
+        </Tile>
       </a>
     ))}
   </Grid>
