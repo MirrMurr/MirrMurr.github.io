@@ -1,9 +1,9 @@
 ---
-
+import UpArrow from "@assets/icons/up-arrow.svg";
 ---
 
 <button id="scroll-to-top" aria-label="Scroll to top" title="Scroll to top">
-  ↑
+  <UpArrow class="icon" />
 </button>
 
 <style>
@@ -57,6 +57,11 @@
 
   #scroll-to-top:active {
     transform: translateY(0);
+  }
+
+  .icon {
+    width: 24px;
+    height: 24px;
   }
 </style>
 

@@ -1,4 +1,6 @@
 ---
+import { createCssVariables } from "@utils/styles";
+
 interface Props {
   width?: string;
   height?: string;
@@ -7,6 +9,7 @@ interface Props {
   aspectRatio?: number;
   textColor?: string;
   backgroundPosition?: string;
+  loading?: "eager" | "lazy";
 }
 
 const {
@@ -17,23 +20,46 @@ const {
   textColor = "inherit",
   image,
   backgroundPosition = "center",
+  loading = "lazy",
 } = Astro.props;
 
-const ratioStyle = aspectRatio ? `aspect-ratio: ${aspectRatio};` : "";
-const backgroundStyle = image
-  ? `background-image: url(${image}); background-size: cover; background-position: ${backgroundPosition};`
-  : `background-color: ${color};`;
-
-const style = `width: ${width || "auto"}; height: ${height || "auto"}; color: ${textColor}; ${backgroundStyle} ${ratioStyle}`;
+const cssVariables = createCssVariables({
+  "--text-color": textColor,
+  "--background-color": color,
+  "--background-position": backgroundPosition,
+  "--aspect-ratio": aspectRatio,
+  "--width": width,
+  "--height": height,
+  "--image-display": image ? "display" : "none",
+});
 ---
 
-<div class="box" style={style}>
-  <slot />
+<div class="box" style={cssVariables} data-persist-container="true">
+  <img src={image} alt={image} loading={loading} data-persist="true" />
 </div>
 
 <style>
+  .box, img {
+    aspect-ratio: var(--aspect-ratio, 1);
+  }
+
   .box {
-    display: block;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    width: var(--width, auto);
+    height: var(--height, auto);
+    color: var(--text-color);
+    background-color: var(--background-color);
+  }
+
+  img {
+    height: auto;
+    width: inherit;
+    object-position: var(--background-position, center);
+    object-fit: cover;
+    display: var(--image-display);
   }
 </style>
 

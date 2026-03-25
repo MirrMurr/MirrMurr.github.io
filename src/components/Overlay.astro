@@ -14,7 +14,7 @@ const { title, description, dimmed = false, dimAmount = 0.3 } = Astro.props;
 <div class="overlay" style={`--dim-amount: ${dimAmount};`}>
   <div class="overlay-content">
     <div class="overlay-header">
-      <h1>{title}</h1>
+      <h1 class="overlay-title">{title}</h1>
     </div>
     {description && <p>{description}</p>}
   </div>

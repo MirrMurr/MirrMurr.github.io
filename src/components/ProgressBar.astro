@@ -1,0 +1,69 @@
+---
+import { createCssVariables } from "@utils/styles";
+import clsx from "clsx";
+
+type Variant = "load" | "scroll";
+type Position = "top" | "bottom";
+
+interface Props {
+  variant?: Variant;
+  position?: Position;
+}
+
+const { variant = "load", position = "top" } = Astro.props;
+
+const variantToAnimationTimelineMap: Record<Variant, string> = {
+  load: "350ms",
+  scroll: "scroll()",
+};
+
+const cssVars = createCssVariables({
+  "--animation-timeline": variant ? variantToAnimationTimelineMap[variant] : undefined,
+});
+---
+
+<div
+  class={clsx('progress-bar', {
+    load: variant === "load",
+    scroll: variant === "scroll",
+    top: position === "top",
+    bottom: position === "bottom",
+  })}
+  style={cssVars}
+/>
+
+<style>
+  .progress-bar {
+    position: fixed;
+    left: 0;
+    background: var(--primary-color);
+    height: 3px;
+    z-index: 999;
+    animation: grow linear;
+  }
+
+  .top {
+    top: 0;
+  }
+
+  .bottom {
+    bottom: 0;
+  }
+
+  .load {
+    animation-timeline: var(--animation-timeline, none);
+  }
+
+  .scroll {
+    animation-timeline: scroll();
+  }
+
+  @keyframes grow {
+    from {
+      width: 0%;
+    }
+    to {
+      width: 100%;
+    }
+  }
+</style>

@@ -18,7 +18,14 @@ const gen = Array.from({ length: 100 }, () => lorem).join("\n\n\n\n");
 
 <Layout title={label}>
   <Overlay title={label}>
-     <Box color={color} image={bannerImage} height="200px" width="100%" backgroundPosition="25% 70%" />
+     <Box
+        color={color}
+        image={bannerImage}
+        height="200px"
+        width="100%"
+        backgroundPosition="25% 70%"
+        loading="eager"
+      />
   </Overlay>
   <br />
   <div class="placeholder">{gen}</div>

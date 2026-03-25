@@ -1,4 +1,5 @@
 interface Page {
+  key: string;
   label: "Home" | "About Me" | "Education" | "Experience" | "Projects" | "Contact";
   href: string;
   color?: string;
@@ -7,36 +8,46 @@ interface Page {
 }
 
 export const pages: Page[] = [
-  { href: "/", label: "Home", color: "#ff6f61" },
   {
+    key: "home",
+    href: "/home",
+    label: "Home",
+    color: "#ff6f61",
+  },
+  {
+    key: "about",
     href: "/about",
     label: "About Me",
-    color: "#4ecdc4",
-    bannerImage: "/src/assets/images/lego.jpeg",
+    // color: "#4ecdc4",
+    bannerImage: "/images/lego.jpeg",
   },
   {
+    key: "education",
     href: "/education",
     label: "Education",
-    color: "#45b7d1",
-    bannerImage: "/src/assets/images/elte-ik-inside.jpeg",
+    // color: "#45b7d1",
+    bannerImage: "/images/elte-ik-inside.jpeg",
   },
   {
+    key: "experience",
     href: "/experience",
     label: "Experience",
-    color: "#96ceb4",
-    bannerImage: "/src/assets/images/andermatt-architecture.jpeg",
+    // color: "#96ceb4",
+    bannerImage: "/images/andermatt-architecture.jpeg",
   },
   {
+    key: "projects",
     href: "/projects",
     label: "Projects",
-    color: "#feca57",
-    bannerImage: "/src/assets/images/prezar-demo.jpeg",
+    // color: "#feca57",
+    bannerImage: "/images/prezar-demo.jpeg",
   },
   {
+    key: "contact",
     href: "/contact",
     label: "Contact",
-    color: "#ff9ff3",
-    bannerImage: "/src/assets/images/mailbox.jpeg",
+    // color: "#ff9ff3",
+    bannerImage: "/images/mailbox.jpeg",
     bannerImagePosition: "25% 50%",
   },
 ];

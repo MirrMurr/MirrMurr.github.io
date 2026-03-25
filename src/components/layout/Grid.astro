@@ -17,7 +17,12 @@ const gapMap: Record<string, string> = {
 const gapValue = gap ? gapMap[gap] || gap : "0";
 ---
 
-<div class={clsx('grid', `grid-cols-${cols}`)} style={`gap: ${gapValue};`}>
+<div
+  class={clsx('grid', {
+    [`grid-cols-${cols}`]: !!cols
+  })}
+  style={`gap: ${gapValue};`}
+>
   <slot />
 </div>
 
