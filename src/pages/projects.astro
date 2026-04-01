@@ -4,6 +4,8 @@ import Layout from "@layouts/Layout.astro";
 import { pages } from "@utils/pageData";
 
 const page = pages.find((page) => page.key === "projects");
+
+// TODO add closable accordions
 ---
 
 <Layout title={page?.title || ''}>
