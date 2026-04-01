@@ -2,7 +2,6 @@
 import Footer from "@components/Footer.astro";
 import Nav from "@components/Nav.astro";
 import ScrollToTop from "@components/ScrollToTop.astro";
-import ProgressBar from "@components/ProgressBar.astro";
 
 import "@styles/index.css";
 
@@ -24,6 +23,12 @@ const { title } = Astro.props;
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Bitcount+Prop+Double+Ink:wght@100..900&family=Press+Start+2P&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Rubik+80s+Fade&family=Zen+Dots&display=swap" rel="stylesheet">
 
+    <link rel="expect" blocking="render" href="#tile-about" />
+    <link rel="expect" blocking="render" href="#tile-education" />
+    <link rel="expect" blocking="render" href="#tile-experience" />
+    <link rel="expect" blocking="render" href="#tile-projects" />
+    <link rel="expect" blocking="render" href="#tile-contact" />
+
     <title>{title}</title>
   </head>
   <body>
@@ -35,7 +40,6 @@ const { title } = Astro.props;
       </main>
       <ScrollToTop />
       <Footer />
-        <ProgressBar variant="scroll" position="bottom" />
       </div>
     </div>
   </body>
