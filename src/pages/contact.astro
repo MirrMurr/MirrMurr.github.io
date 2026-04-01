@@ -4,10 +4,10 @@ import SubPageHero from "@components/SubPageHero.astro";
 import Layout from "@layouts/Layout.astro";
 import { pages } from "@utils/pageData";
 
-const page = pages.find((page) => page.label === "Contact");
+const page = pages.find((page) => page.key === "contact");
 ---
 
-<Layout title={page?.label || ''}>
+<Layout title={page?.title || ''}>
   <SubPageHero {...page} bannerImagePosition="25% 35%" />
   <br />
   <h1>Contact Me</h1>

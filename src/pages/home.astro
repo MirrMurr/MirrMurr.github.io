@@ -7,7 +7,7 @@ import Tile from "@components/Tile.astro";
 import Layout from "@layouts/Layout.astro";
 import { pages } from "@utils/pageData";
 
-const subPages = pages.filter((page) => page.label !== "Home");
+const subPages = pages.filter((page) => page.key !== "home");
 
 // TODO add Timeline(Entry) components to experience and education pages
 // TODO animate timeline entries sliding in on scroll when they get into view (https://www.youtube.com/watch?v=Vcv01Czsq2Y)
@@ -17,10 +17,10 @@ const subPages = pages.filter((page) => page.label !== "Home");
   <Hero />
   <br />
   <Grid>
-   {subPages.map(({ key, href, label, color = '', bannerImage = '', bannerImagePosition = '' }) => (
+   {subPages.map(({ key, href, title, color = '', bannerImage = '', bannerImagePosition = '' }) => (
       <a href={href} class="reveal">
         <Tile key={key}>
-          <Overlay title={label} dimmed dimAmount={0.45} lightOnHover>
+          <Overlay title={title} dimmed dimAmount={0.45} lightOnHover>
             <Box
               width="100%"
               aspectRatio={1}

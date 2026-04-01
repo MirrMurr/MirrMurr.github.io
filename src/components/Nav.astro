@@ -11,10 +11,10 @@ const currentPath = new URL(Astro.request.url).pathname;
 
 <nav class="navbar">
   <ul class="nav-menu">
-    {pages.map(({ href, label }) => (
+    {pages.map(({ href, short }) => (
       <li>
         <a href={href} class={clsx({ active: currentPath === href })}>
-          {label}
+          {short}
         </a>
       </li>
     ))}
@@ -29,10 +29,10 @@ const currentPath = new URL(Astro.request.url).pathname;
 
   <div class="mobile-menu" id="mobile-menu">
     <ul class="mobile-nav-menu">
-      {pages.map(({ href, label }) => (
+      {pages.map(({ href, short }) => (
         <li>
           <a href={href} class={clsx({ active: currentPath === href })}>
-            {label}
+            {short}
           </a>
         </li>
       ))}

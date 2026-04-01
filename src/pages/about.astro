@@ -3,7 +3,7 @@ import SubPageHero from "@components/SubPageHero.astro";
 import Layout from "@layouts/Layout.astro";
 import { pages } from "@utils/pageData";
 
-const page = pages.find((page) => page.label === "About Me");
+const page = pages.find((page) => page.key === "about");
 
 const lorem =
   "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, voluptatum. Perspiciatis repudiandae, ex, dolores dignissimos non dolorem minima, nobis esse neque atque aperiam explicabo obcaecati ipsa repellendus. Adipisci, ab animi!";
@@ -11,7 +11,7 @@ const lorem =
 const gen = Array.from({ length: 100 }, () => lorem).join("\n\n\n\n");
 ---
 
-<Layout title={page?.label || ''}>
+<Layout title={page?.title || ''}>
   <SubPageHero {...page} />
   <br />
   <div class="placeholder">{gen}</div>
@@ -24,10 +24,3 @@ const gen = Array.from({ length: 100 }, () => lorem).join("\n\n\n\n");
     min-height: 50vh;
   }
 </style>
-
-<!-- <script>
-  document.querySelectorAll('.tile').forEach(tile => {
-    const id = tile.dataset.id;
-    tile.style.viewTransitionName = `tile-${id}`
-  });
-</script> -->

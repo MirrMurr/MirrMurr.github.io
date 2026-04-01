@@ -6,19 +6,12 @@ import Tile from "./Tile.astro";
 
 interface Props extends Partial<PageInfo> {}
 
-const {
-  key = "",
-  label = "",
-  color = "",
-  bannerImage = "",
-  bannerImagePosition = "",
-} = Astro.props;
+const { key = "", title = "", bannerImage = "", bannerImagePosition = "" } = Astro.props;
 ---
 
 <Tile key={key}>
-  <Overlay title={label} dimmed dimAmount={0.01}>
+  <Overlay title={title} dimmed dimAmount={0.01} titleBackdrop>
     <Box
-      color={color}
       image={bannerImage}
       height="200px"
       width="100%"

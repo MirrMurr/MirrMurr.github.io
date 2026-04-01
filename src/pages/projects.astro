@@ -3,10 +3,10 @@ import SubPageHero from "@components/SubPageHero.astro";
 import Layout from "@layouts/Layout.astro";
 import { pages } from "@utils/pageData";
 
-const page = pages.find((page) => page.label === "Projects");
+const page = pages.find((page) => page.key === "projects");
 ---
 
-<Layout title={page?.label || ''}>
+<Layout title={page?.title || ''}>
   <SubPageHero {...page} />
   <br />
   <p>This is the projects page.</p>

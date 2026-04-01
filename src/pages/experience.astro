@@ -3,12 +3,12 @@ import SubPageHero from "@components/SubPageHero.astro";
 import Layout from "@layouts/Layout.astro";
 import { pages } from "@utils/pageData";
 
-const page = pages.find((page) => page.label === "Experience");
+const page = pages.find((page) => page.key === "experience");
 
 // TODO Add Timeline and Skills
 ---
 
-<Layout title={page?.label || ''}>
+<Layout title={page?.title || ''}>
   <SubPageHero {...page} />
   <br />
   <p>This is the experience page.</p>
