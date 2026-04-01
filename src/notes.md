@@ -1,5 +1,7 @@
 # Notes
 
+## Dynamic View-Transition
+
 ```ts
 const tile = document.querySelector('.tile')
 const id = tile?.dataset.id;
@@ -24,3 +26,15 @@ document.querySelectorAll('.tile').forEach(tile => {
   tile.style.viewTransitionName = `tile-${id}`
 });
 ```
+
+## Static View-Transition
+
+```ts
+const staticViewTransitionStyleNames = buildViewTransitionCSS(
+  pages.map(({ key }) => key),
+  TileOverlayBoxImgStructure
+);
+console.log(staticViewTransitionStyleNames);
+```
+
+[Bazel](https://bazel.build/) could be used to automatically generate these styles-selectors and names when the build/dev-server is being run.

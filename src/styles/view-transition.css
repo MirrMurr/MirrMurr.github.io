@@ -30,6 +30,15 @@
 
 /* AUTO-GENERATED BELOW */
 
+#tile-home { view-transition-name: tile-home; }
+#tile-home .overlay { view-transition-name: tile-overlay-home; }
+#tile-home .overlay .box { view-transition-name: tile-overlay-box-home; }
+#tile-home .overlay .box img { view-transition-name: tile-overlay-box-img-home; }
+#tile-home .overlay .overlay-content { view-transition-name: tile-overlay-overlay-content-home; }
+#tile-home .overlay .overlay-content .overlay-header { view-transition-name: tile-overlay-overlay-content-overlay-header-home; }
+#tile-home .overlay .overlay-content .overlay-header .overlay-title { view-transition-name: tile-overlay-overlay-content-overlay-header-overlay-title-home; }
+#tile-home .overlay .overlay-shadow { view-transition-name: tile-overlay-overlay-shadow-home; }
+
 #tile-about { view-transition-name: tile-about; }
 #tile-about .overlay { view-transition-name: tile-overlay-about; }
 #tile-about .overlay .box { view-transition-name: tile-overlay-box-about; }
