@@ -28,6 +28,7 @@ export const pages: PageInfo[] = [
     label: "Education",
     // color: "#45b7d1",
     bannerImage: "/images/elte-ik-inside.jpeg",
+    bannerImagePosition: "25% 55%",
   },
   {
     key: "experience",
@@ -35,6 +36,7 @@ export const pages: PageInfo[] = [
     label: "Experience",
     // color: "#96ceb4",
     bannerImage: "/images/andermatt-architecture.jpeg",
+    bannerImagePosition: "25% 40%",
   },
   {
     key: "projects",
