@@ -8,9 +8,17 @@ interface Props {
   dimmed?: boolean;
   dimAmount?: number;
   lightOnHover?: boolean;
+  titleBackdrop?: boolean;
 }
 
-const { title, description, dimmed = false, dimAmount = 0.3, lightOnHover = false } = Astro.props;
+const {
+  title,
+  description,
+  dimmed = false,
+  dimAmount = 0.3,
+  lightOnHover = false,
+  titleBackdrop = false,
+} = Astro.props;
 
 const cssVars = createCssVariables({
   "--dim-amount": dimAmount,
@@ -18,6 +26,8 @@ const cssVars = createCssVariables({
 ---
 
 <div class="overlay" style={cssVars}>
+  <div class={clsx({ "backdrop": titleBackdrop })} />
+
   <div class="overlay-content">
     <div class="overlay-header">
       <h1 class="overlay-title">{title}</h1>
@@ -37,17 +47,40 @@ const cssVars = createCssVariables({
     left: 0;
     width: 100%;
     height: 100%;
+    text-align: start;
+    overflow: hidden;
+    z-index: 0;
+  }
+
+  .backdrop {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(0,0,0,0) 40%,
+      rgba(0,0,0,0.7) 100%
+    );
+    z-index: 2;
+    opacity: 0;
+    animation: animateIn 1s ease-out forwards;
+  }
+
+  @keyframes animateIn {
+    to {
+      opacity: 1;
+    }
   }
 
   .overlay-content {
     position: absolute;
-    z-index: 2;
     top: 0;
     left: 0;
     color: white;
     width: 100%;
     height: 100%;
     padding: 1rem;
+    z-index: 3;
   }
 
   .overlay-header {
@@ -63,10 +96,10 @@ const cssVars = createCssVariables({
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, var(--dim-amount));
-    z-index: 1;
     opacity: 0;
     transition: opacity 0.3s ease;
     pointer-events: none;
+    z-index: 1;
   }
 
   .overlay-shadow-dimmed {
