@@ -1,3 +1,6 @@
+import type { TimelineEntryProps } from "@components/Timeline/TimelineEntry.astro";
+import { makeLorem } from "./mock";
+
 export interface PageInfo {
   key: "home" | "about" | "education" | "experience" | "projects" | "contact";
   title: string;
@@ -68,3 +71,48 @@ const allPages: PageInfo[] = [
 const isEnabled = ({ enabled }: PageInfo) => enabled === undefined || enabled;
 
 export const pages = allPages.filter(isEnabled);
+
+export const experienceTimelineEntries: TimelineEntryProps[] = [
+  {
+    from: new Date("2023"),
+    to: "Now",
+    left: [{ text: makeLorem(2) }],
+    right: [{ text: makeLorem(1) }],
+  },
+  {
+    from: new Date("2021"),
+    left: [{ text: makeLorem(1) }, { text: makeLorem(2) }, { text: makeLorem(1) }],
+    right: [{ text: makeLorem(1) }, { text: makeLorem(1) }],
+  },
+  {
+    from: "2020",
+    right: [
+      {
+        image: {
+          src: "/images/prezar-demo.jpeg",
+          width: "100%",
+          maxWidth: "20rem",
+          align: "center",
+        },
+      },
+    ],
+  },
+  {
+    from: new Date("2018"),
+    left: [
+      { text: makeLorem(2) },
+      {
+        // text: makeLorem(3),
+        // gap: "0.5rem",
+        image: {
+          src: "/images/elte-ik-inside.jpeg",
+          minWidth: "200px",
+          width: "100%",
+          maxWidth: "20rem",
+          align: "center",
+        },
+      },
+    ],
+    right: [{ text: makeLorem(1) }, { text: makeLorem(2) }],
+  },
+];

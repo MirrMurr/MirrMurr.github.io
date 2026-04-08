@@ -1,0 +1,130 @@
+---
+import type { SideContent } from "./types";
+import SideContents from "./SideContents";
+import { isDate } from "@utils/date";
+
+export type TimelineEntryProps = {
+  from?: string | Date | undefined;
+  to?: string | Date | undefined;
+  flow?: "up" | "down";
+  left?: SideContent | undefined;
+  right?: SideContent | undefined;
+};
+
+interface Props extends Partial<TimelineEntryProps> {}
+
+const { from: _from, to: _to, left, right } = Astro.props;
+
+const from = isDate(_from) ? _from.getFullYear() : _from;
+const to = isDate(_to) ? _to.getFullYear() : _to;
+---
+
+
+<div class="timeline-entry">
+  <div class="left">
+    {left && (
+      <SideContents args={left} />
+    )}
+  </div>
+
+  <div class="middle">
+    {to && (
+      <div class="to-container">{to}</div>
+    )}
+
+    <div class="divider-container">
+      <div class="divider" />
+    </div>
+
+    {from && (
+      <div class="from-container">{from}</div>
+    )}
+  </div>
+
+  <div class="right">
+    {right && (
+      <SideContents args={right} />
+    )}
+  </div>
+
+  <!-- MOBILE: -->
+  <div class="mobile-content">
+    {left && (
+      <div class="left">
+        <SideContents args={left} />
+      </div>
+    )}
+    {right && (
+      <div class="right">
+        <SideContents args={right} />
+      </div>
+    )}
+  </div>
+</div>
+
+
+<style>
+  .timeline-entry {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    align-items: stretch;
+  }
+
+  .middle {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: stretch;
+    flex: 0;
+  }
+
+  .divider-container {
+    display: flex;
+    align-items: stretch;
+    flex: 1;
+    justify-content: center;
+  }
+
+  .divider {
+    flex: 0;
+    border-left: 1px dashed var(--text-color-secondary);
+  }
+
+  .left, .right {
+    display: none;
+    flex: 1;
+    color: var(--text-color-secondary);
+  }
+
+  .mobile-content, .mobile-content .left, .mobile-content .right {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
+  }
+
+  .from-container, .to-container {
+    color: var(--primary-color);
+  }
+
+  /* Default (mobile first) */
+  .middle { order: 0; }
+  .left { order: 1; }
+  .right { order: 2; }
+
+  /* Desktop */
+  @media (min-width: 768px) {
+    .left { order: 0; }
+    .middle { order: 1; }
+    .right { order: 2; }
+
+    .left, .right {
+      display: block;
+    }
+
+    .mobile-content {
+      display: none;
+    }
+  }
+</style>

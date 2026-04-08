@@ -1,0 +1,22 @@
+---
+import type { TimelineEntryProps } from "./TimelineEntry.astro";
+import TimelineEntry from "./TimelineEntry.astro";
+
+interface Props {
+  entries?: TimelineEntryProps[] | undefined;
+}
+
+const { entries } = Astro.props;
+---
+
+<div class="timeline">
+  {entries?.map((props) => <TimelineEntry {...props} />)}
+</div>
+
+<style>
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+</style>
