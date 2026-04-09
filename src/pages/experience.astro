@@ -1,8 +1,9 @@
 ---
 import SubPageHero from "@components/SubPageHero.astro";
 import Timeline from "@components/Timeline/Timeline.astro";
+import { experienceTimelineEntries } from "@data/experience/experienceTimelineEntries";
+import { pages } from "@data/pageData";
 import Layout from "@layouts/Layout.astro";
-import { experienceTimelineEntries, pages } from "@utils/pageData";
 
 const page = pages.find((page) => page.key === "experience");
 ---
@@ -11,6 +12,8 @@ const page = pages.find((page) => page.key === "experience");
   <SubPageHero {...page} />
   <br />
   <p>This is the experience page.</p>
+  <br />
+  <p><strong>TODO: Add summary of skills and tools.</strong></p>
   <br />
   <Timeline entries={experienceTimelineEntries} />
 </Layout>

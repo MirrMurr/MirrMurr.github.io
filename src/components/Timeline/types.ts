@@ -1,24 +1,28 @@
-import type { CSSProperties } from "preact";
+import type { MarkdownComponent } from "@utils/types";
 
 export type SideContentImageAlign = "left" | "center" | "right";
 export type SideContentImageTextWrap = "around" | "aboveAndBelow";
 
+export type SideContentImage = {
+  src: string;
+  align?: SideContentImageAlign;
+  textWrap?: SideContentImageTextWrap;
+} & Pick<
+  Partial<CSSStyleProperties>,
+  | "margin"
+  | "aspectRatio"
+  | "minWidth"
+  | "width"
+  | "maxWidth"
+  | "minHeight"
+  | "height"
+  | "maxHeight"
+>;
+
 export type SideContent = {
-  gap?: string;
   text?: string;
-  image?: {
-    src: string;
-    align?: SideContentImageAlign;
-    textWrap?: SideContentImageTextWrap;
-  } & Pick<
-    CSSProperties,
-    | "margin"
-    | "aspectRatio"
-    | "minWidth"
-    | "width"
-    | "maxWidth"
-    | "minHeight"
-    | "height"
-    | "maxHeight"
-  >;
+  markdown?: MarkdownComponent;
+  image?: SideContentImage;
+  gap?: string;
+  color?: CSSStyleProperties["color"] | undefined;
 }[];

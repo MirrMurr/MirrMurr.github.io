@@ -1,6 +1,6 @@
 ---
 import type { SideContent } from "./types";
-import SideContents from "./SideContents";
+import SideContents from "./SideContents.astro";
 import { isDate } from "@utils/date";
 
 export type TimelineEntryProps = {
@@ -23,7 +23,7 @@ const to = isDate(_to) ? _to.getFullYear() : _to;
 <div class="timeline-entry">
   <div class="left">
     {left && (
-      <SideContents args={left} />
+      <SideContents args={left} side="left" />
     )}
   </div>
 
@@ -43,7 +43,7 @@ const to = isDate(_to) ? _to.getFullYear() : _to;
 
   <div class="right">
     {right && (
-      <SideContents args={right} />
+      <SideContents args={right} side="right" />
     )}
   </div>
 
@@ -69,6 +69,7 @@ const to = isDate(_to) ? _to.getFullYear() : _to;
     gap: 1rem;
     width: 100%;
     align-items: stretch;
+    min-height: 4rem;
   }
 
   .middle {
@@ -77,6 +78,7 @@ const to = isDate(_to) ? _to.getFullYear() : _to;
     gap: 0.5rem;
     align-items: stretch;
     flex: 0;
+    min-width: 2rem;
   }
 
   .divider-container {
@@ -94,7 +96,6 @@ const to = isDate(_to) ? _to.getFullYear() : _to;
   .left, .right {
     display: none;
     flex: 1;
-    color: var(--text-color-secondary);
   }
 
   .mobile-content, .mobile-content .left, .mobile-content .right {
@@ -126,5 +127,20 @@ const to = isDate(_to) ? _to.getFullYear() : _to;
     .mobile-content {
       display: none;
     }
+  }
+
+  .timeline-entry :global(a) {
+    color: #0066ff;
+    text-decoration: none;
+  }
+
+  .timeline-entry :global(a):hover::after {
+    display: none;
+  }
+
+  .timeline-entry :global(h1) {
+    font-size: larger;
+    color: var(--primary-color);
+    margin-top: -3px;
   }
 </style>

@@ -1,0 +1,118 @@
+---
+import MarkdownRenderer from "@components/MarkdownRenderer.astro";
+import type { SideContent, SideContentImageAlign, SideContentImageTextWrap } from "./types";
+
+type SideContentsProps = {
+  args: SideContent;
+  side?: "left" | "right";
+};
+
+const textWrapDisplayMap: Record<SideContentImageTextWrap, CSSStyleProperties["display"]> = {
+  around: "inline-block",
+  aboveAndBelow: "flex",
+};
+
+const imageAlignMap: Record<SideContentImageAlign, CSSStyleProperties["justifyContent"]> = {
+  left: "flex-start",
+  center: "center",
+  right: "flex-end",
+};
+
+interface Props extends SideContentsProps {}
+
+const { args, side } = Astro.props;
+---
+
+<div class="side-content-container">
+  {args.map(({ text, markdown, image, gap, color }) => {
+    return (
+      <div
+        class="side-content-item reveal"
+        style={{
+          '--side-gap': gap || "0.5rem",
+          '--side-justify-content': side === "left" ? "flex-end" : "flex-start",
+          '--text-color': color || 'initial'
+        }}
+      >
+        {(text || markdown) && (
+          // for some reason, class selector order styling does not work
+          <span style={{ order: 2 }}>
+            {text ? text : null}
+            {markdown ? <MarkdownRenderer content={markdown} /> : null}
+          </span>
+        )}
+        {image && (
+          <div
+            class="image"
+            style={{
+              '--image-display': textWrapDisplayMap[image.textWrap || "aboveAndBelow"],
+              '--image-justify-content': imageAlignMap[image.align || "center"],
+              '--image-margin': image.margin,
+              '--image-order': image?.align === "left" ? 1 : image?.align === "right" ? 3 : 0,
+            }}
+          >
+            <img
+              alt={image.src}
+              src={image.src}
+              width={image.width || "auto"}
+              height={image.height || "auto"}
+              style={{
+                '--image-aspect-ratio': image.aspectRatio,
+                '--image-min-height': image.minHeight,
+                '--image-max-height': image.maxHeight,
+                '--image-min-width': image.minWidth,
+                '--image-max-width': image.maxWidth,
+              }}
+            />
+          </div>
+        )}
+      </div>
+    )
+  })}
+</div>
+
+<style>
+  .side-content-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--side-gap, 0.5rem);
+    flex: 1;
+  }
+
+  .side-content-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--side-gap, 0.5rem);
+    flex: 1;
+    justify-content: var(--side-justify-content, flex-start);
+    color: var(--text-color, initial);
+  }
+
+  .image {
+    height: fit-content;
+    justify-content: center; /* it is always positioned to center on narrow screens */
+    flex: 1;
+    display: var(--image-display, flex);
+    margin: var(--image-margin, 0.5rem);
+    order: var(--image-order, 0);
+  }
+
+  .image img {
+    border-radius: 0.25rem;
+    aspect-ratio: var(--image-aspect-ratio);
+    min-height: var(--image-min-height);
+    max-height: var(--image-max-height);
+    min-width: var(--image-min-width);
+    max-width: var(--image-max-width);
+  }
+
+  @media (min-width: 1440px) {
+    .side-content-item {
+      flex-direction: row;
+    }
+
+    .image {
+      justify-content: var(--image-justify-content, center);
+    }
+  }
+</style>

@@ -1,0 +1,12 @@
+---
+import type { MarkdownComponent } from "@utils/types";
+
+interface Props {
+  content: MarkdownComponent;
+}
+
+const { content } = Astro.props;
+const Content = content; // important so that astro can treat it as a renderable component
+---
+
+<Content />

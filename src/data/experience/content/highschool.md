@@ -1,0 +1,1 @@
+Even during highschool, I developed a strong affinity towards programming. I used to follow YouTube tutorials on how to draw stuff in the browser; all without knowing what are JavaScript libraries or what does 'importing' mean. Then, in my senior years, I chose Python programming as my 3rd (optional) faculty.

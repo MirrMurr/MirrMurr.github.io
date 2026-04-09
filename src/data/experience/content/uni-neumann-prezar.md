@@ -1,0 +1,1 @@
+Three semesters into my bachelors, I got accepted to the *Neumann-group* which received special treatment internally at ELTE. This meant that I could work on (at the time) cutting edge technology and had access to the best teachers. This was also the start of my first thesis work: ***PrezAR***, that is an *Augmented-Reality (AR) based presentational application*.
