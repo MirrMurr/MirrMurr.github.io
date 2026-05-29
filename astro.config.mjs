@@ -7,4 +7,6 @@ export default defineConfig({
     "/": "/home",
   },
   integrations: [preact({ compat: true })],
+  // https://docs.astro.build/en/guides/deploy/github/
+  site: "https://mirrmurr.github.io",
 });
