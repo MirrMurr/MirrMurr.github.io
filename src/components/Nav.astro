@@ -6,14 +6,20 @@ import CloseIcon from "@assets/icons/close.svg";
 import MyName from "@components/MyName.astro";
 import { pages } from "@data/pageData";
 
-const currentPath = new URL(Astro.request.url).pathname;
+/**
+ * Normalize path by removing trailing slash for consistent comparison
+ * @param path - The URL path to normalize
+ */
+const normalizePath = (path: string) => path.replace(/\/$/, "") || "/";
+
+const currentPath = normalizePath(new URL(Astro.request.url).pathname);
 ---
 
 <nav class="navbar">
   <ul class="nav-menu">
     {pages.map(({ href, short }) => (
       <li>
-        <a href={href} class={clsx({ active: currentPath === href })}>
+        <a href={href} class={clsx({ active: currentPath === normalizePath(href) })}>
           {short}
         </a>
       </li>
@@ -31,7 +37,7 @@ const currentPath = new URL(Astro.request.url).pathname;
     <ul class="mobile-nav-menu">
       {pages.map(({ href, short }) => (
         <li>
-          <a href={href} class={clsx({ active: currentPath === href })}>
+          <a href={href} class={clsx({ active: currentPath === normalizePath(href) })}>
             {short}
           </a>
         </li>
