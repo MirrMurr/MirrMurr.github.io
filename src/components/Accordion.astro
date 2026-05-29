@@ -1,0 +1,159 @@
+---
+// This component handles the structure and logic for a single accordion item.
+// It expects props: title (string) and content (slot).
+
+import CaretRight from "@assets/icons/caret-right.svg";
+import { Image } from "astro:assets";
+
+export type AccordionProps = {
+  title?: string | undefined;
+};
+
+interface Props extends AccordionProps {}
+
+const { title } = Astro.props;
+---
+
+<div class="accordion">
+  <div id={title} class="header" aria-expanded="false" aria-controls={`panel-${title}`}>
+    <div class="accordion-icon">
+      <Image src={CaretRight} alt="CaretRight" class="caret-right-icon" loading="lazy" width={32} />
+    </div>
+    <span class="title">{title}</span>
+    <div class="title-rights-side">
+      <slot name="header-extra" />
+    </div>
+  </div>
+
+  <div class="panel" id="panel-${props.id}" role="region" aria-labelledby="header-${props.id}">
+    <div class="content-container">
+      <slot />
+    </div>
+  </div>
+</div>
+
+<style>
+  .accordion {
+    border: 1px solid var(--border-color, #ddd);
+    border-bottom: none;
+    overflow: hidden;
+  }
+
+  .accordion:last-of-type {
+    border-bottom: 1px solid var(--border-color, #ddd);
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0.75rem 0.75rem 0.75rem 0;
+    /* background-color: color-mix(in srgb, var(--background-color), black 20%); */
+    /* background: none; */
+    background-color: var(--off-white);
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    transition: background-color 0.2s;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    box-shadow: none;
+  }
+
+  .header.open {
+    border-bottom: 1px solid var(--border-color, #ddd);
+    /* box-shadow: 0 0px 30px rgba(0,0,0,0.2); */
+    transition: box-shadow 100ms ease;
+  }
+
+  .header:hover {
+    background-color: var(--hover-color, #f9f9f9);
+  }
+
+  .accordion-icon {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    transform: rotate(0deg);
+    transition: transform 0.3s ease;
+  }
+
+  .caret-right-icon {
+    height: 100%;
+    max-height: 32px;
+    width: auto;
+  }
+
+  .title {
+    flex-grow: 1;
+    font-weight: 600;
+  }
+
+  .title-rights-side {
+    /* padding-left: 1rem; */
+  }
+
+  .panel {
+    background-color: var(--panel-bg, #fff);
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    display: grid;
+    grid-template-rows: minmax(0, 0fr);
+    transition: grid-template-rows 0.3s ease, opacity 200ms ease;
+  }
+
+  .panel.open {
+    /* Set a large enough max-height to accommodate content and the animation to work porperly */
+    max-height: 100rem;
+    grid-template-rows: minmax(0, 1fr);
+    opacity: 1;
+  }
+
+  .panel > * {
+    overflow: hidden;
+  }
+
+  .content-container {
+    padding: 1rem;
+    background-color: white;
+  }
+</style>
+
+<script define:vars={{title}}>
+  const header = document.getElementById(title);
+
+  function toggle(panel) {
+    if (panel.classList.contains('open')) {
+      panel.offsetHeight; // force reflow
+      panel.classList.remove('open');
+    } else {
+      panel.classList.add('open');
+    }
+  }
+
+  function handleClick() {
+    const panel = this.nextElementSibling;
+    const icon = this.querySelector('.accordion-icon');
+    const isExpanded = this.getAttribute('aria-expanded') === 'true';
+
+    // Close all other accordions first
+    // document.querySelectorAll('.accordion .header').forEach(otherHeader => {
+    //   if (otherHeader.getAttribute('id') !== header.getAttribute('id')) {
+    //     otherHeader.setAttribute('aria-expanded', 'false');
+    //     otherHeader.classList.remove('open'); // header itself
+    //     otherHeader.nextElementSibling.classList.remove('open'); // the panel
+    //     otherHeader.querySelector('.accordion-icon').style.transform = 'rotate(0deg)';
+    //   }
+    // });
+
+    const isOpen = !isExpanded;
+    this.setAttribute('aria-expanded', isOpen);
+    toggle(header);
+    toggle(panel);
+    icon.style.transform = isOpen ? 'rotate(90deg)' : 'rotate(0deg)';
+  }
+
+  header?.addEventListener('click', handleClick);
+</script>

@@ -1,10 +1,10 @@
 ---
 import clsx from "clsx";
 
-type Direction = "row" | "column";
-type Align = "start" | "center" | "end" | "stretch";
-type Justify = "start" | "center" | "end" | "between" | "around";
-type Gap = "small" | "medium" | "large";
+export type Direction = "row" | "column";
+export type Align = "start" | "center" | "end" | "stretch";
+export type Justify = "start" | "center" | "end" | "between" | "around";
+export type Gap = "tiny" | "small" | "medium" | "large";
 
 interface Props {
   direction?: Direction;
@@ -27,7 +27,7 @@ const { direction = "row", align, justify, wrap, grow, gap = "medium" } = Astro.
         [`items-${align}`]: align,
         [`justify-${justify}`]: justify,
         'flex-wrap': wrap,
-        'flex-grow': grow,
+        'grow': grow,
         [`gap-${gap}`]: gap,
       }
     )
@@ -77,6 +77,9 @@ const { direction = "row", align, justify, wrap, grow, gap = "medium" } = Astro.
   }
   .flex-grow {
     flex-grow: 1;
+  }
+  .gap-tiny {
+    gap: 0.25rem;
   }
   .gap-small {
     gap: 0.5rem;

@@ -51,9 +51,9 @@ const { title } = Astro.props;
     --off-white: rgb(246, 246, 246);
 
     --header-color: white;
-    --background-color: var(--off-white);
+    --background-color: var(white);
 
-    --text-color: #222222;
+    --text-color: #262626;
     --text-color-secondary: #888888;
 
     --shadow-color: 0deg 0% 50%;
@@ -77,9 +77,9 @@ const { title } = Astro.props;
   *,
   *::before,
   *::after {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
+    margin: 0;
+    /* padding: 0; */
   }
 
   *::selection {
@@ -89,18 +89,32 @@ const { title } = Astro.props;
 
   html,
   body {
-    font-family:  "Roboto Condensed", "Bitcount Prop Double Ink", systems-ui, sans-serif;
+    font-family:  ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     background-color: var(--background-color);
     color: var(--text-color);
     font-style: normal;
     text-align: justify;
-    /* font-optical-sizing: auto; */
+    font-optical-sizing: auto;
     line-height: 1.5;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  h1, h2, h3, h4, h5 {
+    color: black;
+    font-family:  "Roboto Condensed", "Bitcount Prop Double Ink", systems-ui, sans-serif;
   }
 
   main {
     padding: 2rem 0;
     flex: 1;
+  }
+
+  pre {
+    /* font-family: "Roboto Mono", monospace; */
+    background-color: #f5f5f5;
+    color: #262626;
+    border-radius: 6px;
+    padding: 1rem;
   }
 
   #page {

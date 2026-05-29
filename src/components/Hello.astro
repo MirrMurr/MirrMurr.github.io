@@ -6,4 +6,15 @@ interface Props {
 
 const { greeting = "Hello", name } = Astro.props;
 ---
-<h1>{greeting}, {name}!</h1>
+<h1><span class="prompt">$</span> {greeting}, {name}!</h1>
+
+<style>
+  h1 {
+    font-family: monospace;
+  }
+
+  .prompt {
+    color: var(--theme-color);
+  }
+
+</style>

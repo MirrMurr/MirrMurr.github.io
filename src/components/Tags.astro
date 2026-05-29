@@ -1,0 +1,16 @@
+---
+import Flex, { type Justify } from "./layout/Flex.astro";
+import type { TagProps } from "./Tag.astro";
+import Tag from "./Tag.astro";
+
+interface Props {
+  tags: TagProps[];
+  justify?: Justify;
+}
+
+const { tags, justify = "start" } = Astro.props;
+---
+
+<Flex gap="tiny" wrap justify={justify}>
+  {tags.map(props => <Tag {...props} />)}
+</Flex>

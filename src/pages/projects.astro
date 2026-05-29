@@ -2,14 +2,32 @@
 import SubPageHero from "@components/SubPageHero.astro";
 import Layout from "@layouts/Layout.astro";
 import { pages } from "@data/pageData";
+import Accordion from "@components/Accordion.astro";
+import Tags from "@components/Tags.astro";
+import MarkdownRenderer from "@components/MarkdownRenderer.astro";
+import projectAccordions from "@data/projects/projectsAccordions";
 
 const page = pages.find((page) => page.key === "projects");
-
-// TODO add closable accordions
 ---
 
 <Layout title={page?.title || ''}>
   <SubPageHero {...page} />
   <br />
-  <p>This is the projects page.</p>
+  {projectAccordions.map(({ title, tags, content }) => (
+    <Accordion title={title}>
+      <Tags slot="header-extra" tags={tags} justify="end" />
+      <div class="content"><MarkdownRenderer content={content} /></div>
+    </Accordion>
+  ))}
 </Layout>
+
+<style>
+  .content {
+    min-height: 10rem;
+    overflow-y: auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+</style>

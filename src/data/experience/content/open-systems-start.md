@@ -1,1 +1,1 @@
-# Open Systems AG
+# Open Systems AG (Switzerland)

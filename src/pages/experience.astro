@@ -1,8 +1,10 @@
 ---
 import SubPageHero from "@components/SubPageHero.astro";
+import Tags from "@components/Tags.astro";
 import Timeline from "@components/Timeline/Timeline.astro";
 import { experienceTimelineEntries } from "@data/experience/experienceTimelineEntries";
 import { pages } from "@data/pageData";
+import { tags } from "@data/tags";
 import Layout from "@layouts/Layout.astro";
 
 const page = pages.find((page) => page.key === "experience");
@@ -11,9 +13,7 @@ const page = pages.find((page) => page.key === "experience");
 <Layout title={page?.title || ''}>
   <SubPageHero {...page} />
   <br />
-  <p>This is the experience page.</p>
-  <br />
-  <p><strong>TODO: Add summary of skills and tools.</strong></p>
+  <Tags tags={Object.values(tags)} justify="center" />
   <br />
   <Timeline entries={experienceTimelineEntries} />
 </Layout>

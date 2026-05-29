@@ -1,0 +1,38 @@
+---
+import { createCssVariables } from "@utils/styles";
+
+export type TagProps = {
+  label: string;
+  color: string;
+  dilute?: string | undefined;
+};
+
+interface Props extends TagProps {}
+
+const { label, color, dilute } = Astro.props;
+
+const cssVars = createCssVariables({
+  "--text-color": color,
+  "--background-color": `color-mix(in srgb, var(--text-color), white ${dilute || "90%"})`,
+});
+---
+
+<span class="tag" style={cssVars}>{label}</span>
+
+<style>
+  .tag {
+    display: flex;
+    width: fit-content;
+    height: fit-content;
+    flex-direction: row;
+    line-height: 1rem;
+    padding: 0.125rem 0.5rem;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    border-radius: 0.375rem;
+    box-sizing: border-box;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 1;
+  }
+</style>

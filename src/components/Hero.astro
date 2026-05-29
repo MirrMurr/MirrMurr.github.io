@@ -15,14 +15,15 @@ const interests = [
   "playing instruments 🎸",
   "skateboarding 🛹",
   "training my body & eating healthy",
-  "and sometimes",
-  "going to festivals 🏟️",
+  "and going to festivals 🏟️",
 ];
 ---
 
 <Hello name="Visitor" />
 <br />
-<p>Welcome to my portfolio website! My name is <MyName gap="0.2rem" />. Professionally, I'm a software engineer with experience and degrees in {skills.map((skill, i) => {
+<p>Welcome to my portfolio website! My name is <MyName gap="0.2rem" />.</p>
+<br />
+<p>Professionally, I'm a software engineer with experience and degrees in {skills.map((skill, i) => {
   const isLast = i === skills.length - 1;
   const isSecondLast = i === skills.length - 2;
   if (isLast) {
