@@ -15,12 +15,7 @@ import OpenSystemsStart from "./content/open-systems-start.md";
 export const experienceTimelineEntries: TimelineEntryProps[] = [
   {
     to: "Now",
-    left: [
-      { markdown: OpenSystemsStart },
-      {
-        text: "After graduating my masters degree, I became full-time at my previous company for a month, but then got approached with a job offer and after having accepted, I moved to Switzerland.",
-      },
-    ],
+    left: [{ markdown: OpenSystemsStart }],
     right: [{ markdown: OSAGProjects }],
   },
   {
