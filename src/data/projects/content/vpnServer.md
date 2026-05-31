@@ -22,3 +22,7 @@ In short, I pulled out the Raspberry Pi that was used for my other projects, pul
   - sha2-truncbug=yes
   + sha2-truncbug=no
   </pre>
+
+<br />
+
+I still don't fully understand the exact reason behind this or the fix, but I believe that's the power of debugging, which reminds me of why I like what I'm doing, because of how deep you can dive, yet still trusting the underlying tested and robust systems.

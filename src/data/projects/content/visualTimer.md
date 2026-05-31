@@ -18,4 +18,4 @@ I used this, and a little bit of math to figure out the gradually disappearing "
 
 <!-- ![Visual Timer](/public/images/visual-time.png) -->
 
-<img src="images/visual-time.png" alt="visual-timer-ui" width="70%" height="auto" style="align-self: center">
+<img src="/images/visual-time.png" alt="visual-timer-ui" width="70%" height="auto" style="align-self: center">
