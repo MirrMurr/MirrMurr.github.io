@@ -6,8 +6,6 @@ import Flex from "@components/layout/Flex.astro";
 import MyName from "@components/MyName.astro";
 
 const page = pages.find((page) => page.key === "about");
-
-// TODO populate page with data, images, paragraphs
 ---
 
 <Layout title={page?.title || ''}>
@@ -27,17 +25,22 @@ const page = pages.find((page) => page.key === "about");
       <br />
       <br />
 
-      Besides the love of programming, I pursue the discovery of the realms of music with my guitar and also self-education by reading books.
+      Besides the love of programming, I pursue the discovery of the realms of music with my guitar and also self-education by reading books. Also, as the image above might suggest, I have a soft spot for LEGOs.
 
       <br />
       <br />
 
-      If you're curious about me, and want to get in touch, you can check out my <a href="/contact" class="contact-link">contact page</a>.
+      If you're curious about me, and want to get in touch, you will find everything on my <a href="/contact" class="contact-link">contact page</a>.
     </p>
   </Flex>
 </Layout>
 
 <style>
+
+  p {
+    text-align: left;
+  }
+
   .placeholder {
     color: var(--text-color-secondary);
     border-radius: 8px;
