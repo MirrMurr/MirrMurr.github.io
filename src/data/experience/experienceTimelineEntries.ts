@@ -44,7 +44,11 @@ export const experienceTimelineEntries: TimelineEntryProps[] = [
   {
     to: "2021",
     left: [{ markdown: CarrierStart }],
-    right: [
+    right: [],
+  },
+  {
+    to: "2020",
+    left: [
       {
         image: {
           src: "/images/prezar-demo.jpeg",
@@ -54,19 +58,17 @@ export const experienceTimelineEntries: TimelineEntryProps[] = [
         },
       },
     ],
+    right: [
+      {
+        markdown: UniNeumannPrezAR,
+      },
+    ],
   },
   {
     to: "2019",
     left: [
       {
         markdown: UniStart,
-        image: {
-          src: "/images/elte-logo.png",
-          width: "100%",
-          minWidth: "7rem",
-          maxWidth: "9rem",
-          align: "right",
-        },
       },
       // {
       //   image: {
@@ -78,7 +80,17 @@ export const experienceTimelineEntries: TimelineEntryProps[] = [
       //   },
       // },
     ],
-    right: [{ markdown: UniNeumannPrezAR }],
+    right: [
+      {
+        image: {
+          src: "/images/elte-logo.png",
+          width: "100%",
+          minWidth: "7rem",
+          maxWidth: "9rem",
+          align: "center",
+        },
+      },
+    ],
   },
   {
     from: "1999",
