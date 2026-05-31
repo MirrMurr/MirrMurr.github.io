@@ -1,8 +1,9 @@
 ---
 import SubPageHero from "@components/SubPageHero.astro";
 import Layout from "@layouts/Layout.astro";
-import { makeLorem } from "@utils/mock";
 import { pages } from "@data/pageData";
+import Flex from "@components/layout/Flex.astro";
+import MyName from "@components/MyName.astro";
 
 const page = pages.find((page) => page.key === "about");
 
@@ -12,7 +13,28 @@ const page = pages.find((page) => page.key === "about");
 <Layout title={page?.title || ''}>
   <SubPageHero {...page} />
   <br />
-  <div class="placeholder">{makeLorem(100)}</div>
+  <!-- <div class="placeholder">{makeLorem(100)}</div> -->
+  <Flex>
+    <img src="/images/aboutme/headshot.jpeg" alt="headshot" style="width: 40%; height: auto; border-radius: 8px; box-shadow: 0px 6px 15px #999; object-fit: cover;" />
+    <p>
+      Hello reader! 👋 My name is <MyName gap="0.2rem" />.
+
+      <br />
+      <br />
+
+      I'm a software developer with a passion for creating efficient and scalable applications. I have experience in various programming languages and frameworks, and I enjoy learning new technologies to stay up-to-date in the ever-evolving tech landscape.
+
+      <br />
+      <br />
+
+      Besides the love of programming, I pursue the discovery of the realms of music with my guitar and also self-education by reading books.
+
+      <br />
+      <br />
+
+      If you're curious about me, and want to get in touch, you can check out my <a href="/contact" class="contact-link">contact page</a>.
+    </p>
+  </Flex>
 </Layout>
 
 <style>
@@ -20,5 +42,9 @@ const page = pages.find((page) => page.key === "about");
     color: var(--text-color-secondary);
     border-radius: 8px;
     min-height: 50vh;
+  }
+
+  a.contact-link {
+    color: var(--primary-color);
   }
 </style>

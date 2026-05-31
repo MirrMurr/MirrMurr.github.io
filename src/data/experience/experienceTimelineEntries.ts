@@ -7,7 +7,6 @@ import CarrierStart from "./content/carrier-start.md";
 import CarrierStartFrontend from "./content/carrier-start-frontend.md";
 import UniNeumannPrezAR from "./content/uni-neumann-prezar.md";
 import OpenSystemsStart from "./content/open-systems-start.md";
-import { makeLorem } from "@utils/mock";
 
 export const experienceTimelineEntries: TimelineEntryProps[] = [
   {
@@ -15,13 +14,13 @@ export const experienceTimelineEntries: TimelineEntryProps[] = [
     // from: "2024",
     left: [
       { text: "OSAG projects & personal developments" },
-      { text: makeLorem(1), color: "grey" },
+      // { text: makeLorem(1), color: "grey" },
       // { text: makeLorem(1), color: "grey" },
     ],
     right: [
       // { markdown: OpenSystemsStart },
       // { text: "Open Systems AG" },
-      { text: makeLorem(1), color: "grey" },
+      // { text: makeLorem(1), color: "grey" },
       // { text: makeLorem(1), color: "grey" },
     ],
   },
@@ -30,7 +29,7 @@ export const experienceTimelineEntries: TimelineEntryProps[] = [
     left: [
       { text: "MSc: FinTech" },
       { text: "2nd thesis: decentralized web3 marketing application" },
-      { text: "+ GPA" },
+      // { text: "+ GPA" },
       // { text: makeLorem(1) },
       // { text: makeLorem(2) },
       // { text: makeLorem(1) },
@@ -38,7 +37,7 @@ export const experienceTimelineEntries: TimelineEntryProps[] = [
     right: [
       { markdown: OpenSystemsStart },
       { text: "Became full-time at the prev company for a month, but then moved to Switzerland." },
-      { text: makeLorem(1), color: "grey" },
+      // { text: makeLorem(1), color: "grey" },
       // { text: makeLorem(1) },
     ],
   },
@@ -64,7 +63,7 @@ export const experienceTimelineEntries: TimelineEntryProps[] = [
           align: "right",
         },
       },
-      { text: "+ GPA" },
+      // { text: "+ GPA" },
     ],
     right: [
       {

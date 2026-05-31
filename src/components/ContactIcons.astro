@@ -8,16 +8,34 @@ import { Image } from "astro:assets";
 
 interface Props {
   layout?: "row" | "grid";
+  emailHref?: string;
+  whatsappHref?: string;
+  githubHref?: string;
+  linkedinHref?: string;
 }
 
-const { layout = "row" } = Astro.props;
+const {
+  layout = "row",
+  emailHref = "mailto:kara.p.adam@icloud.com",
+  whatsappHref = "https://wa.me/0798105453",
+  githubHref = "https://github.com/MirrMurr",
+  linkedinHref = "https://www.linkedin.com/in/adam-kara-2502301a5/",
+} = Astro.props;
 ---
 
 <div class={clsx("contact-icons", `contact-icons--${layout}`)}>
-  <Image src={EmailLetter} alt="Email" class="contact-icon" loading="lazy" />
-  <Image src={WhatsApp} alt="WhatsApp" class="contact-icon" loading="lazy" />
-  <Image src={GitHub} alt="GitHub" class="contact-icon" loading="lazy" />
-  <Image src={LinkedIn} alt="LinkedIn" class="contact-icon" loading="lazy" />
+  <a href={emailHref} target="_blank" rel="noopener noreferrer" class="contact-link">
+    <Image src={EmailLetter} alt="Email" class="contact-icon" loading="lazy" />
+  </a>
+  <a href={whatsappHref} target="_blank" rel="noopener noreferrer" class="contact-link">
+    <Image src={WhatsApp} alt="WhatsApp" class="contact-icon" loading="lazy" />
+  </a>
+  <a href={githubHref} target="_blank" rel="noopener noreferrer" class="contact-link">
+    <Image src={GitHub} alt="GitHub" class="contact-icon" loading="lazy" />
+  </a>
+  <a href={linkedinHref} target="_blank" rel="noopener noreferrer" class="contact-link">
+    <Image src={LinkedIn} alt="LinkedIn" class="contact-icon" loading="lazy" />
+  </a>
 </div>
 
 <style>
@@ -43,4 +61,15 @@ const { layout = "row" } = Astro.props;
   .contact-icons--row {
     justify-content: center;
   }
-</style>
+
+  .contact-link {
+    display: flex;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  .contact-link:hover {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }</style>
