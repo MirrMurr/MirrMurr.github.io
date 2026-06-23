@@ -14,6 +14,7 @@ const { label, color, dilute } = Astro.props;
 const cssVars = createCssVariables({
   "--text-color": color,
   "--background-color": `color-mix(in srgb, var(--text-color), white ${dilute || "90%"})`,
+  "--background-color-dark": `color-mix(in srgb, var(--text-color), black 70%)`,
 });
 ---
 
@@ -34,5 +35,9 @@ const cssVars = createCssVariables({
     font-weight: 500;
     font-size: 13px;
     line-height: 1;
+  }
+
+  :global(html[data-theme='dark']) .tag {
+    background-color: var(--background-color-dark);
   }
 </style>

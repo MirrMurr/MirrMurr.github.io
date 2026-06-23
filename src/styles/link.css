@@ -1,6 +1,6 @@
 a {
   text-decoration: none;
-  color: black;
+  color: var(--text-color);
   position: relative;
   display: inline-block;
   font-weight: 300;

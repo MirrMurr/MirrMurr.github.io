@@ -25,9 +25,9 @@ import UpArrow from "@assets/icons/up-arrow.svg";
     width: 2.5rem;
     height: 2.5rem;
     border-radius: 50%;
-    background-color: #000000;
-    border: 1px solid #000;
-    color: white;
+    background-color: rgb(24, 24, 24);
+    border: 1px solid rgb(70, 70, 70);
+    color: rgb(220, 220, 220);
     font-size: 1.2rem;
     cursor: pointer;
     display: flex;
@@ -41,6 +41,17 @@ import UpArrow from "@assets/icons/up-arrow.svg";
     pointer-events: none;
   }
 
+  html[data-theme='light'] #scroll-to-top {
+    background-color: #000000;
+    border: 1px solid #000;
+    color: white;
+  }
+
+  html[data-theme='light'] #scroll-to-top:hover {
+    background-color: #333;
+    border-color: #333;
+  }
+
   #scroll-to-top.visible {
     opacity: 1;
     visibility: visible;
@@ -49,8 +60,8 @@ import UpArrow from "@assets/icons/up-arrow.svg";
   }
 
   #scroll-to-top:hover {
-    background-color: #444;
-    border-color: #444;
+    background-color: rgb(48, 48, 48);
+    border-color: rgb(70, 70, 70);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
     transform: translateY(-2px);
   }

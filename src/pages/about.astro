@@ -13,7 +13,7 @@ const page = pages.find((page) => page.key === "about");
   <br />
   <!-- <div class="placeholder">{makeLorem(100)}</div> -->
   <Flex>
-    <img src="/images/aboutme/headshot.jpeg" alt="headshot" style="width: 40%; height: auto; border-radius: 8px; box-shadow: 0px 6px 15px #999; object-fit: cover;" />
+    <img src="/images/aboutme/headshot.jpeg" alt="headshot" class="headshot" />
     <p>
       Hello reader! 👋 My name is <MyName gap="0.2rem" />.
 
@@ -36,6 +36,17 @@ const page = pages.find((page) => page.key === "about");
 </Layout>
 
 <style>
+  .headshot {
+    width: 40%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+    box-shadow: 0px 6px 15px rgba(153, 153, 153, 0.5);
+  }
+
+  :global(html[data-theme='dark']) .headshot {
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.6);
+  }
 
   p {
     text-align: left;

@@ -23,6 +23,13 @@ const { title } = Astro.props;
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Bitcount+Prop+Double+Ink:wght@100..900&family=Press+Start+2P&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Rubik+80s+Fade&family=Zen+Dots&display=swap" rel="stylesheet">
 
+    <!-- Initialize theme immediately to prevent flash -->
+    <script is:inline>
+      const saved = localStorage.getItem('theme');
+      const theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    </script>
+
     <!-- <link rel="expect" blocking="render" href="#tile-about" />
     <link rel="expect" blocking="render" href="#tile-experience" />
     <link rel="expect" blocking="render" href="#tile-projects" />
@@ -51,11 +58,51 @@ const { title } = Astro.props;
     --off-white: rgb(246, 246, 246);
 
     --header-color: white;
-    --background-color: var(white);
+    --background-color: white;
 
     --text-color: #262626;
     --text-color-secondary: #888888;
 
+    --border-color: #ddd;
+    --hover-color: #f9f9f9;
+
+    --shadow-color: 0deg 0% 50%;
+  }
+
+  /* Dark mode styles */
+  html[data-theme='dark'] {
+    --header-color: rgb(24, 24, 24);
+    --background-color: rgb(24, 24, 24);
+    --border-color: rgb(70, 70, 70);
+    --hover-color: rgb(35, 35, 35);
+    --text-color: rgb(220, 220, 220);
+    --text-color-secondary: rgb(160, 160, 160);
+    --off-white: rgb(48, 48, 48);
+    --shadow-color: 0deg 0% 0%;
+  }
+
+  html[data-theme='dark'] h1,
+  html[data-theme='dark'] h2,
+  html[data-theme='dark'] h3,
+  html[data-theme='dark'] h4,
+  html[data-theme='dark'] h5 {
+    color: rgb(220, 220, 220);
+  }
+
+  html[data-theme='dark'] pre {
+    background-color: rgb(48, 48, 48);
+    color: rgb(220, 220, 220);
+  }
+
+  html[data-theme='dark'] .mobile-nav-menu li {
+    border-top-color: rgb(70, 70, 70);
+  }
+
+  html[data-theme='dark'] .mobile-nav-menu li:last-of-type {
+    border-bottom-color: rgb(70, 70, 70);
+  }
+
+  :root {
     --shadow-color: 0deg 0% 50%;
     --shadow-elevation-low: 0px 0.5px 0.6px hsl(var(--shadow-color) / 0.31),
       0px 1px 1.3px -0.8px hsl(var(--shadow-color) / 0.41),

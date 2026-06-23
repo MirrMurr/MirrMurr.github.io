@@ -4,6 +4,7 @@ import clsx from "clsx";
 import BurgerIcon from "@assets/icons/burger-menu.svg";
 import CloseIcon from "@assets/icons/close.svg";
 import MyName from "@components/MyName.astro";
+import DarkModeSelector from "@components/DarkModeSelector.astro";
 import { pages } from "@data/pageData";
 
 /**
@@ -26,12 +27,16 @@ const currentPath = normalizePath(new URL(Astro.request.url).pathname);
     ))}
   </ul>
 
-  <span class="navbar-title"><a href="/"><MyName /></a></span>
+
 
   <button class="burger-menu-button" id="burger-menu-button" aria-label="Toggle menu">
     <img src={BurgerIcon.src} class="burger-menu-icon burger-icon" />
     <img src={CloseIcon.src} class="burger-menu-icon close-icon" />
   </button>
+
+  <span class="navbar-title"><a href="/"><MyName /></a></span>
+
+  <DarkModeSelector />
 
   <div class="mobile-menu" id="mobile-menu">
     <ul class="mobile-nav-menu">
@@ -127,6 +132,18 @@ const currentPath = normalizePath(new URL(Astro.request.url).pathname);
     width: 2rem;
     height: 2rem;
     z-index: 99;
+    color: var(--text-color);
+  }
+
+  :global(.dark-mode-toggle) {
+    position: absolute;
+    right: 1rem;
+    margin: 0;
+    z-index: 999999;
+  }
+
+  :global(html[data-theme='dark']) .burger-icon, :global(html[data-theme='dark']) .close-icon {
+    filter: brightness(1) invert(1);
   }
 
   .burger-menu-icon {
@@ -201,11 +218,16 @@ const currentPath = normalizePath(new URL(Astro.request.url).pathname);
     display: none;
   }
 
+
+  .navbar {
+    position: sticky;
+  }
+
   .navbar-title {
     display: none;
     font-size: 1.5rem;
     font-weight: 500;
-    color: black;
+    color: var(--text-color);
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -238,15 +260,39 @@ const currentPath = normalizePath(new URL(Astro.request.url).pathname);
 
     .burger-menu-button {
       display: flex;
-    }
-
-    .navbar {
-      justify-content: left;
-      padding: 0 1rem;
+      order: 1;
     }
 
     .navbar-title {
       display: block;
+      order: 2;
+      flex-grow: 1;
+      text-align: center;
+      position: relative;
+      left: auto;
+      transform: none;
+    }
+
+    :global(.dark-mode-toggle) {
+      margin: 0;
+      order: 3;
+      position: relative;
+      right: auto;
+    }
+
+     .dark-mode-selector {
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 99999;
+      order: 3
+    }
+
+    .navbar {
+      justify-content: flex-start;
+      padding: 0 1rem;
+      gap: 1rem;
     }
   }
 </style>

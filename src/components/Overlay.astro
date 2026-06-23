@@ -76,11 +76,15 @@ const cssVars = createCssVariables({
     position: absolute;
     top: 0;
     left: 0;
-    color: white;
+    color: rgb(220, 220, 220);
     width: 100%;
     height: 100%;
     padding: 1rem;
     z-index: 3;
+  }
+
+  html[data-theme='light'] .overlay-content {
+    color: white;
   }
 
   .overlay-header {
@@ -90,6 +94,10 @@ const cssVars = createCssVariables({
   }
 
   .overlay-title {
+    color: rgb(220, 220, 220);
+  }
+
+  html[data-theme='light'] .overlay-title {
     color: white;
   }
 

@@ -109,6 +109,18 @@ const to = isDate(_to) ? _to.getFullYear() : _to;
     color: var(--primary-color);
   }
 
+  html[data-theme='dark'] .divider {
+    border-left-color: var(--text-color, rgb(220, 220, 220));
+  }
+
+  html[data-theme='dark'] :global(p), html[data-theme='dark'] :global(span) {
+    color: var(--text-color, rgb(220, 220, 220));
+  }
+
+   html[data-theme='dark'] .timeline-entry :global(a) {
+    color: #66b3ff;
+  }
+
   /* Default (mobile first) */
   .middle { order: 0; }
   .left { order: 1; }
