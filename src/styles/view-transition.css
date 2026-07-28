@@ -7,7 +7,7 @@
 }
 
 ::view-transition-old(tile-overlay-box-img-*),
-::view-transition-new(tile-overlay-box-img-*), {
+::view-transition-new(tile-overlay-box-img-*) {
   /* Prevent the default animation,
   so both views remain opacity:1 throughout the transition */
   animation: none;
