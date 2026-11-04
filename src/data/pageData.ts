@@ -1,5 +1,5 @@
 export interface PageInfo {
-  key: "home" | "about" | "education" | "experience" | "projects" | "contact";
+  key: "home" | "about" | "education" | "experience" | "achievements" | "projects" | "contact";
   title: string;
   short: string;
   href: string;
@@ -46,9 +46,18 @@ const allPages: PageInfo[] = [
     title: "Education & Experience",
     short: "Experience",
     // color: "#96ceb4",
+    bannerImage: "/images/elte-ik-inside.jpeg",
+    bannerImagePosition: "25% 55%",
+    order: 16,
+  },
+  {
+    key: "achievements",
+    href: "/achievements",
+    title: "Achievements",
+    short: "Achievements",
     bannerImage: "/images/andermatt-architecture.jpeg",
     bannerImagePosition: "25% 40%",
-    order: 16,
+    order: 8,
   },
   {
     key: "projects",
@@ -58,7 +67,7 @@ const allPages: PageInfo[] = [
     // color: "#feca57",
     bannerImage: "/images/prezar-demo.jpeg",
     bannerImagePosition: "25% 25%",
-    order: 8,
+    order: 24,
   },
   {
     key: "contact",

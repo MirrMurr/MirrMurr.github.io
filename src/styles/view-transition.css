@@ -66,6 +66,15 @@
 #tile-experience .overlay .overlay-content .overlay-header .overlay-title { view-transition-name: tile-overlay-overlay-content-overlay-header-overlay-title-experience; }
 #tile-experience .overlay .overlay-shadow { view-transition-name: tile-overlay-overlay-shadow-experience; }
 
+#tile-achievements { view-transition-name: tile-achievements; }
+#tile-achievements .overlay { view-transition-name: tile-overlay-achievements; }
+#tile-achievements .overlay .box { view-transition-name: tile-overlay-box-achievements; }
+#tile-achievements .overlay .box img { view-transition-name: tile-overlay-box-img-achievements; }
+#tile-achievements .overlay .overlay-content { view-transition-name: tile-overlay-overlay-content-achievements; }
+#tile-achievements .overlay .overlay-content .overlay-header { view-transition-name: tile-overlay-overlay-content-overlay-header-achievements; }
+#tile-achievements .overlay .overlay-content .overlay-header .overlay-title { view-transition-name: tile-overlay-overlay-content-overlay-header-overlay-title-achievements; }
+#tile-achievements .overlay .overlay-shadow { view-transition-name: tile-overlay-overlay-shadow-achievements; }
+
 #tile-projects { view-transition-name: tile-projects; }
 #tile-projects .overlay { view-transition-name: tile-overlay-projects; }
 #tile-projects .overlay .box { view-transition-name: tile-overlay-box-projects; }

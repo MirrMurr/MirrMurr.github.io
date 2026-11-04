@@ -1,0 +1,137 @@
+---
+import SubPageHero from "@components/SubPageHero.astro";
+import Layout from "@layouts/Layout.astro";
+import { pages } from "@data/pageData";
+import Tags from "@components/Tags.astro";
+import { tagList } from "@data/tags";
+
+const page = pages.find((page) => page.key === "achievements");
+
+const achievements = [
+  {
+    title: "Agentic Loop & Orchestration Setup",
+    tags: tagList("agenticWorkflows", "aiSkills", "copilot", "github"),
+    company: "Open Systems AG",
+    location: "Switzerland",
+    summary:
+      "Developed and shared an internal AI workflow system for structured multi-step execution, focused on orchestration, reliable handoffs, and cost-aware task management across collaborative engineering work.",
+    bullets: [
+      "Designed an agentic loop that improved task decomposition, reduced unnecessary token usage, and enabled more deliberate model calls.",
+      "Created a team-shared workflow pattern that encouraged smarter execution paths and more consistent, reviewable outputs.",
+      "Helped reduce broken trunk situations in Git by improving validation discipline and keeping changes smaller, more focused, and easier to review.",
+    ],
+  },
+  {
+    title: "Firewall Rule Editor Self-Service",
+    tags: tagList("react", "typescript", "graphql"),
+    company: "Open Systems AG",
+    location: "Switzerland",
+    summary:
+      "Designed and delivered a reusable state-management pattern for a complex rule-editing workflow and built a high-performance hierarchical editor capable of handling thousands of firewall rules while keeping the UI responsive and maintainable.",
+    bullets: [
+      "Restored complex workflows reliably through a reusable React state model that improved maintainability across the app.",
+      "Scaled the editor from struggling with around 300 rows to handling 5,000–7,000 rules comfortably using virtualization techniques.",
+      "Led frontend integration through a multi-version API migration to keep compatibility between v1 and v2 backend services.",
+    ],
+  },
+  {
+    title: "Internal & Customer-facing AI Chatbot",
+    tags: tagList("react", "typescript", "python", "agenticWorkflows", "aiSkills"),
+    company: "Open Systems AG",
+    location: "Switzerland",
+    summary:
+      "Built a robust AI chat experience with streaming event parsing, live history updates, and a common autocomplete flow that improved usability and reduced friction for both internal and customer-facing use cases.",
+    bullets: [
+      "Developed an extensible event parsing architecture for streamed AI responses to support new event types quickly.",
+      "Updated chat history in real time as streamed responses arrived, while preserving efficient rendering and state updates.",
+      "Worked with engineering teams across boundaries to define API requirements and influence integration decisions.",
+    ],
+  },
+  {
+    title: "Escape Room Franchise Game & CMS Software",
+    tags: tagList("javascript", "docker", "shell"),
+    company: "Grape Solutions Ltd.",
+    location: "Hungary",
+    summary:
+      "Delivered a cross-platform digital experience for an escape room franchise, connecting kiosk-based gameplay with operator workflows and a CMS-driven content system while supporting distributed real-time state synchronization.",
+    bullets: [
+      "Implemented real-time synchronization of game state between distributed kiosks and operators using multiple event queues.",
+      "Built and deployed Windows and Linux artifacts using Electron.js for a cross-platform product experience.",
+      "Collaborated across time zones to drive continuous product improvements and business-focused iteration.",
+    ],
+  },
+];
+---
+
+<Layout title={page?.title || ""}>
+  <SubPageHero {...page} />
+  <br />
+  <div class="achievements">
+    {achievements.map(({ title, tags, company, location, summary, bullets }) => (
+      <article class="achievement reveal">
+        <div class="header">
+          <h2>{title}</h2>
+          <div class="meta">{company} · {location}</div>
+          <Tags tags={tags} justify="start" />
+        </div>
+        <p>{summary}</p>
+        <ul>
+          {bullets.map((bullet) => (
+            <li>{bullet}</li>
+          ))}
+        </ul>
+      </article>
+    ))}
+  </div>
+</Layout>
+
+<style>
+  .achievements {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .achievement {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(128, 128, 128, 0.2);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.05);
+  }
+
+  :global(html[data-theme='dark']) .achievement {
+    background: rgba(255, 255, 255, 0.02);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.22);
+  }
+
+  .header {
+    margin-bottom: 1rem;
+  }
+
+  .meta {
+    color: var(--text-color-secondary);
+    font-size: 0.85rem;
+    margin: 0.25rem 0 0.75rem;
+  }
+
+  h2 {
+    margin: 0 0 0.5rem;
+    font-size: 1.35rem;
+  }
+
+  p {
+    margin: 0 0 1rem;
+    text-align: left;
+  }
+
+  ul {
+    margin: 0;
+    padding-left: 1.25rem;
+    text-align: left;
+  }
+
+  li + li {
+    margin-top: 0.5rem;
+  }
+</style>
