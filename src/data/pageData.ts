@@ -75,8 +75,8 @@ const allPages: PageInfo[] = [
     title: "Contact",
     short: "Contact",
     // color: "#ff9ff3",
-    bannerImage: "/images/mailbox.jpeg",
-    bannerImagePosition: "25% 50%",
+    bannerImage: "/images/po-box.jpeg",
+    bannerImagePosition: "60% 50%",
     order: 256,
   },
 ];
