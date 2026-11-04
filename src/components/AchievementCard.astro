@@ -1,0 +1,70 @@
+---
+import Tags from "@components/Tags.astro";
+import type { Achievement } from "@data/achievements";
+
+interface Props {
+  achievement: Achievement;
+}
+
+const { achievement } = Astro.props;
+const { title, tags, company, location, summary, bullets } = achievement;
+---
+
+<article class="achievement reveal">
+  <div class="header">
+    <h2>{title}</h2>
+    <div class="meta">{company} · {location}</div>
+    <Tags tags={tags} justify="start" />
+  </div>
+  <p>{summary}</p>
+  <ul>
+    {bullets.map((bullet) => (
+      <li>{bullet}</li>
+    ))}
+  </ul>
+</article>
+
+<style>
+  .achievement {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(128, 128, 128, 0.2);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.05);
+  }
+
+  :global(html[data-theme='dark']) .achievement {
+    background: rgba(255, 255, 255, 0.02);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.22);
+  }
+
+  .header {
+    margin-bottom: 1rem;
+  }
+
+  .meta {
+    color: var(--text-color-secondary);
+    font-size: 0.85rem;
+    margin: 0.25rem 0 0.75rem;
+  }
+
+  h2 {
+    margin: 0 0 0.5rem;
+    font-size: 1.35rem;
+  }
+
+  p {
+    margin: 0 0 1rem;
+    text-align: left;
+  }
+
+  ul {
+    margin: 0;
+    padding-left: 1.25rem;
+    text-align: left;
+  }
+
+  li + li {
+    margin-top: 0.5rem;
+  }
+</style>

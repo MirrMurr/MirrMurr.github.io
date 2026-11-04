@@ -1,30 +1,27 @@
 import type { TimelineEntryProps } from "@components/Timeline/TimelineEntry.astro";
 
-import Born from "./content/born.md";
-import Highschool from "./content/highschool.md";
 import UniStart from "./content/uni-start.md";
+import UniMasters from "./content/uni-masters.md";
 import CarrierStart from "./content/carrier-start.md";
 import CarrierStartFrontend from "./content/carrier-start-frontend.md";
-import GrapeProjectsPaniqRoom from "./content/grape-projects-paniqroom.md";
-import GrapeProjectsMVMi from "./content/grape-projects-mvmi.md";
-import GrapeProjectsAegis from "./content/grape-projects-aegis.md";
+import GrapeSolutionsTakeaways from "./content/grape-solutions-takeaways.md";
 import OSAGProjects from "./content/osag-projects.md";
 import UniNeumannPrezAR from "./content/uni-neumann-prezar.md";
 import OpenSystemsStart from "./content/open-systems-start.md";
 
 export const experienceTimelineEntries: TimelineEntryProps[] = [
   {
+    from: "2023",
     to: "Now",
     left: [{ markdown: OpenSystemsStart }],
     right: [{ markdown: OSAGProjects }],
   },
   {
-    to: "2023",
-    left: [
-      {
-        text: "Finished my education strong with a focus on software engineering and web development flavoured with finance.",
-      },
-    ],
+    span: [{ markdown: GrapeSolutionsTakeaways, variant: "takeaway" }],
+  },
+  {
+    from: "2022",
+    left: [{ markdown: UniMasters }],
     right: [
       {
         text: 'The topic of my master\'s thesis: "Automating the Distribution of Marketing Materials with Blockchain and Smart Contracts."',
@@ -32,22 +29,11 @@ export const experienceTimelineEntries: TimelineEntryProps[] = [
     ],
   },
   {
-    to: "2022",
-    left: [
-      {
-        markdown: CarrierStartFrontend,
-      },
-      { markdown: GrapeProjectsPaniqRoom },
-    ],
-    right: [{ markdown: GrapeProjectsAegis }, { markdown: GrapeProjectsMVMi }],
-  },
-  {
-    to: "2021",
+    from: "2020",
     left: [{ markdown: CarrierStart }],
-    right: [],
+    right: [{ markdown: CarrierStartFrontend }],
   },
   {
-    to: "2020",
     left: [
       {
         image: {
@@ -65,6 +51,7 @@ export const experienceTimelineEntries: TimelineEntryProps[] = [
     ],
   },
   {
+    from: "2018",
     to: "2019",
     left: [
       {
@@ -94,15 +81,14 @@ export const experienceTimelineEntries: TimelineEntryProps[] = [
   },
   {
     from: "1999",
-    to: "2018",
     left: [
       {
-        markdown: Born,
+        text: "Already during highschool, I developed a strong affinity towards programming. I used to follow YouTube tutorials on how to draw stuff in the browser, without knowing what JavaScript libraries or importing meant.",
       },
     ],
     right: [
       {
-        markdown: Highschool,
+        text: "In my senior years, I had the chance to choose Python programming as my third optional subject, alongside with Math and Physics.",
       },
     ],
   },

@@ -1,22 +1,25 @@
 ---
-import type { TimelineEntryProps } from "./TimelineEntry.astro";
+import type { TimelineEntryProps, TimelineOrder } from "./TimelineEntry.astro";
 import TimelineEntry from "./TimelineEntry.astro";
 
 interface Props {
   entries?: TimelineEntryProps[] | undefined;
+  order?: TimelineOrder;
 }
 
-const { entries } = Astro.props;
+const { entries, order = "desc" } = Astro.props;
+const orderedEntries = order === "asc" ? [...(entries ?? [])].reverse() : entries ?? [];
 ---
 
 <div class="timeline">
-  {entries?.map((props) => <TimelineEntry {...props} />)}
+  {orderedEntries.map((entry) => (
+    <TimelineEntry {...entry} order={order} />
+  ))}
 </div>
 
 <style>
   .timeline {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
   }
 </style>

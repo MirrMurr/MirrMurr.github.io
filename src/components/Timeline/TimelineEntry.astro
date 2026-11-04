@@ -3,63 +3,118 @@ import type { SideContent } from "./types";
 import SideContents from "./SideContents.astro";
 import { isDate } from "@utils/date";
 
-export type TimelineEntryProps = {
+type TimelineEntryBase = {
   from?: string | Date | undefined;
   to?: string | Date | undefined;
   flow?: "up" | "down";
-  left?: SideContent | undefined;
-  right?: SideContent | undefined;
+  showDivider?: boolean;
 };
 
-interface Props extends Partial<TimelineEntryProps> {}
+export type TimelineEntryProps = TimelineEntryBase &
+  (
+    | { left: SideContent; right: SideContent; span?: never }
+    | { span: SideContent; left?: never; right?: never }
+  );
 
-const { from: _from, to: _to, left, right } = Astro.props;
+export type TimelineOrder = "asc" | "desc";
+
+type Props = TimelineEntryProps & {
+  order?: TimelineOrder;
+};
+
+const props = Astro.props;
+const {
+  from: _from,
+  to: _to,
+  order = "desc",
+  showDivider = true,
+} = props;
 
 const from = isDate(_from) ? _from.getFullYear() : _from;
 const to = isDate(_to) ? _to.getFullYear() : _to;
+const topDate = order === "asc" ? from : to;
+const bottomDate = order === "asc" ? to : from;
+const isSpanEntry = "span" in props;
+const leftContent = isSpanEntry ? undefined : props.left;
+const rightContent = isSpanEntry ? undefined : props.right;
+const spanContent = isSpanEntry ? props.span : undefined;
 ---
 
 
-<div class="timeline-entry">
-  <div class="left">
-    {left && (
-      <SideContents args={left} side="left" />
-    )}
-  </div>
+<div class:list={["timeline-entry", { "span-entry": isSpanEntry }]}>
+  {isSpanEntry ? (
+    <>
+      {topDate && (
+        <div class="top-date span-top-date">{topDate}</div>
+      )}
 
-  <div class="middle">
-    {to && (
-      <div class="to-container">{to}</div>
-    )}
+      <div
+        class:list={[
+          "middle",
+          {
+            "with-top-date": topDate,
+            "with-bottom-date": bottomDate,
+          },
+        ]}
+      >
+        <div class="divider-container">
+          {showDivider && <div class="divider" />}
+        </div>
+      </div>
 
-    <div class="divider-container">
-      <div class="divider" />
-    </div>
+      {bottomDate && (
+        <div class="bottom-date span-bottom-date">{bottomDate}</div>
+      )}
 
-    {from && (
-      <div class="from-container">{from}</div>
-    )}
-  </div>
-
-  <div class="right">
-    {right && (
-      <SideContents args={right} side="right" />
-    )}
-  </div>
-
-  <!-- MOBILE: -->
-  <div class="mobile-content">
-    {left && (
+      {spanContent && (
+        <div class="span-content">
+          <SideContents args={spanContent} />
+        </div>
+      )}
+    </>
+  ) : (
+    <>
       <div class="left">
-        <SideContents args={left} />
+        {leftContent && leftContent.length > 0 && (
+          <SideContents args={leftContent} side="left" />
+        )}
       </div>
-    )}
-    {right && (
+
+      <div class="middle">
+        {topDate && (
+          <div class="top-date">{topDate}</div>
+        )}
+
+        <div class="divider-container">
+          {showDivider && <div class="divider" />}
+        </div>
+
+        {bottomDate && (
+          <div class="bottom-date">{bottomDate}</div>
+        )}
+      </div>
+
       <div class="right">
-        <SideContents args={right} />
+        {rightContent && rightContent.length > 0 && (
+          <SideContents args={rightContent} side="right" />
+        )}
       </div>
-    )}
-  </div>
+
+      <!-- MOBILE: -->
+      <div class="mobile-content">
+        {leftContent && (
+          <div class="left">
+            <SideContents args={leftContent} />
+          </div>
+        )}
+        {rightContent && (
+          <div class="right">
+            <SideContents args={rightContent} />
+          </div>
+        )}
+      </div>
+    </>
+  )}
 </div>
 
 
@@ -81,6 +136,41 @@ const to = isDate(_to) ? _to.getFullYear() : _to;
     min-width: 2rem;
   }
 
+  .span-entry {
+    display: grid;
+    grid-template-columns: 2rem minmax(0, 1fr);
+    grid-template-rows: min-content auto min-content;
+  }
+
+  .span-entry .middle {
+    grid-column: 1;
+    grid-row: 1 / 4;
+  }
+
+  .span-entry .middle.with-top-date .divider-container {
+    margin-top: 2rem;
+  }
+
+  .span-entry .middle.with-bottom-date .divider-container {
+    margin-bottom: 2rem;
+  }
+
+  .span-entry .span-top-date {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .span-entry .span-bottom-date {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  .span-entry .span-content {
+    display: flex;
+    grid-column: 2;
+    grid-row: 2;
+  }
+
   .divider-container {
     display: flex;
     align-items: stretch;
@@ -89,13 +179,30 @@ const to = isDate(_to) ? _to.getFullYear() : _to;
   }
 
   .divider {
-    flex: 0;
-    border-left: 1px dashed var(--text-color-secondary);
+    flex: 0 0 1px;
+    margin-block: 1px;
+    background: repeating-linear-gradient(
+      to bottom,
+      var(--divider-color, var(--text-color-secondary)) 0 1px,
+      transparent 1px 3px
+    );
   }
 
   .left, .right {
     display: none;
     flex: 1;
+    padding-block: 0.25rem;
+  }
+
+  .span-content {
+    display: none;
+    padding-block: 0.25rem;
+  }
+
+  .span-entry .left,
+  .span-entry .right,
+  .span-entry .mobile-content {
+    display: none;
   }
 
   .mobile-content, .mobile-content .left, .mobile-content .right {
@@ -105,15 +212,26 @@ const to = isDate(_to) ? _to.getFullYear() : _to;
     flex: 1;
   }
 
-  .from-container, .to-container {
+  .mobile-content {
+    padding-block: 0.25rem;
+  }
+
+  .mobile-content .left,
+  .mobile-content .right {
+    padding-block: 0;
+  }
+
+  .top-date,
+  .bottom-date {
     color: var(--primary-color);
   }
 
   html[data-theme='dark'] .divider {
-    border-left-color: var(--text-color, rgb(220, 220, 220));
+    --divider-color: var(--text-color, rgb(220, 220, 220));
   }
 
-  html[data-theme='dark'] :global(p), html[data-theme='dark'] :global(span) {
+  html[data-theme='dark'] :global(p),
+  html[data-theme='dark'] :global(span) {
     color: var(--text-color, rgb(220, 220, 220));
   }
 
@@ -128,6 +246,45 @@ const to = isDate(_to) ? _to.getFullYear() : _to;
 
   /* Desktop */
   @media (min-width: 768px) {
+    .timeline-entry {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 2rem minmax(0, 1fr);
+      grid-template-areas:
+        "left middle right"
+        "full full full";
+    }
+
+    .left { grid-area: left; }
+    .middle {
+      grid-area: middle;
+      grid-row: 1 / 3;
+    }
+    .right { grid-area: right; }
+    .span-content {
+      display: flex;
+    }
+
+    .span-entry {
+      grid-template-columns: minmax(0, 1fr) 2rem minmax(0, 1fr);
+      grid-template-areas: none;
+    }
+
+    .span-entry .middle {
+      grid-column: 2;
+      grid-row: 1 / 4;
+    }
+
+    .span-entry .span-top-date,
+    .span-entry .span-bottom-date {
+      grid-column: 2;
+    }
+
+    .span-entry .span-content {
+      grid-column: 1 / -1;
+      grid-row: 2;
+      z-index: 1;
+    }
+
     .left { order: 0; }
     .middle { order: 1; }
     .right { order: 2; }

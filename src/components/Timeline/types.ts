@@ -25,4 +25,5 @@ export type SideContent = {
   image?: SideContentImage;
   gap?: string;
   color?: CSSStyleProperties["color"] | undefined;
+  variant?: "takeaway";
 }[];

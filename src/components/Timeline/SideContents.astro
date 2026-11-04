@@ -24,7 +24,7 @@ const { args, side } = Astro.props;
 ---
 
 <div class="side-content-container">
-  {args.map(({ text, markdown, image, gap, color }) => {
+  {args.map(({ text, markdown, image, gap, color, variant }) => {
     return (
       <div
         class="side-content-item reveal"
@@ -36,9 +36,12 @@ const { args, side } = Astro.props;
       >
         {(text || markdown) && (
           // for some reason, class selector order styling does not work
-          <span style={{ order: 2 }}>
-            {text ? text : null}
-            {markdown ? <MarkdownRenderer content={markdown} /> : null}
+          <span class:list={["content", { takeaway: variant === "takeaway" }]} style={{ order: 2 }}>
+            {variant === "takeaway" && <span class="takeaway-icon" aria-hidden="true">💡</span>}
+            <span class="content-body">
+              {text ? text : null}
+              {markdown ? <MarkdownRenderer content={markdown} /> : null}
+            </span>
           </span>
         )}
         {image && (
@@ -86,6 +89,29 @@ const { args, side } = Astro.props;
     flex: 1;
     justify-content: var(--side-justify-content, flex-start);
     color: var(--text-color, initial);
+  }
+
+  .takeaway {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: start;
+    gap: 0.4rem;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    background-color: #f0f0f0;
+    text-align: left;
+  }
+
+  .content-body {
+    min-width: 0;
+  }
+
+  :global(html[data-theme='dark']) .takeaway {
+    background-color: #363636;
+  }
+
+  .takeaway-icon {
+    flex-shrink: 0;
   }
 
   .image {

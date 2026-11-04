@@ -5,6 +5,10 @@ export const tags = {
     label: "Git",
     color: "red",
   },
+  github: {
+    label: "GitHub",
+    color: "grey",
+  },
   html: {
     label: "HTML",
     color: "rgb(211,99,54)",
