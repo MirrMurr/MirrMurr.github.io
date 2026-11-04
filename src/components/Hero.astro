@@ -4,8 +4,9 @@ import MyName from "./MyName.astro";
 
 const skills = [
   "Architectural software design",
-  "Front- & Backend Web Development",
-  "UI/UX Design",
+  "Frontend and UX/UI development",
+  "Backend and Platform Development",
+  "Cybersecurity",
   "Machine Learning",
   "FinTech",
   "Data Science",
@@ -21,9 +22,9 @@ const interests = [
 
 <Hello name="Visitor" />
 <br />
-<p>Welcome to my portfolio website! My name is <MyName gap="0.2rem" />.</p>
+<p>My name is <MyName gap="0.2rem" />. I am a Software Engineer based in <strong>Zürich, Switzerland</strong> (GMT+2) 📍🇨🇭 </p>
 <br />
-<p>Professionally, I'm a software engineer with experience and degrees in {skills.map((skill, i) => {
+<p>I have professional experience and degrees in {skills.map((skill, i) => {
   const isLast = i === skills.length - 1;
   const isSecondLast = i === skills.length - 2;
   if (isLast) {
@@ -33,6 +34,9 @@ const interests = [
   } else {
     return <span><strong>{skill}</strong>, </span>;
   }
-})}. In my civil life, my passions include {interests.join(', ')}.</p>
+})}.
+</p>
+<br />
+<p>In my civil life, my passions include {interests.join(', ')}.</p>
 <!-- <br />
 <p>Feel free to explore and if you have any questions, don't hesitate to contact me!</p> -->

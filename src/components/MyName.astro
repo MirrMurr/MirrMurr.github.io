@@ -11,6 +11,7 @@ const { fontSize, gap } = Astro.props;
 <span class="my-name-container">
   <span class="my-name" style={`gap: ${gap || "0.5rem"}`}>
     <span class="firstname" style={`font-size: ${fontSize || "auto"}`}>Adam</span>
+    <span class="middlename" style={`font-size: ${fontSize || "auto"}`}>P.</span>
     <span class="lastname" style={`font-size: ${fontSize || "auto"}`}>Kara</span>
   </span>
 </span>
@@ -31,7 +32,7 @@ const { fontSize, gap } = Astro.props;
     display: block;
   }
 
-  .lastname {
+  .middlename,.lastname {
     font-weight: 300;
     color: var(--primary-color);
     display: block;

@@ -19,6 +19,8 @@ const page = pages.find((page) => page.key === "projects");
       <div class="content"><MarkdownRenderer content={content} /></div>
     </Accordion>
   ))}
+  <br />
+  <p><i class="muted">and more...</i></p>
 </Layout>
 
 <style>
@@ -29,5 +31,9 @@ const page = pages.find((page) => page.key === "projects");
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+  }
+
+  .muted {
+    color: var(--text-color-secondary);
   }
 </style>
