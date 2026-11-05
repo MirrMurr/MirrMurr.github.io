@@ -6,6 +6,10 @@
   animation: none;
 }
 
+.nav-menu a.active::after {
+  view-transition-name: active-nav-underline;
+}
+
 ::view-transition-old(tile-overlay-box-img-*),
 ::view-transition-new(tile-overlay-box-img-*) {
   /* Prevent the default animation,
