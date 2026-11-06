@@ -1,7 +1,12 @@
 .reveal {
   animation: reveal linear both;
-  animation-timeline: view();
   animation-range: entry 0% cover 20%;
+}
+
+@supports (animation-timeline: view()) {
+  .reveal {
+    animation-timeline: view();
+  }
 }
 
 @keyframes reveal {
