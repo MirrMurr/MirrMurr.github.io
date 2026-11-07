@@ -41,7 +41,7 @@ const spanContent = isSpanEntry ? props.span : undefined;
 ---
 
 
-<div class:list={["timeline-entry", { "span-entry": isSpanEntry }]}>
+<div class:list={["timeline-entry", { "span-entry": isSpanEntry, "dated-entry": topDate || bottomDate, "with-divider": showDivider }]}>
   {isSpanEntry ? (
     <>
       {topDate && (
@@ -127,6 +127,10 @@ const spanContent = isSpanEntry ? props.span : undefined;
     min-height: 4rem;
   }
 
+  .dated-entry + .dated-entry {
+    margin-top: 0.5rem;
+  }
+
   .middle {
     display: flex;
     flex-direction: column;
@@ -167,8 +171,14 @@ const spanContent = isSpanEntry ? props.span : undefined;
 
   .span-entry .span-content {
     display: flex;
-    grid-column: 2;
+    grid-column: 1 / -1;
     grid-row: 2;
+  }
+
+  @media (max-width: 767px) {
+    .span-entry.with-divider .span-content {
+      grid-column: 2;
+    }
   }
 
   .divider-container {

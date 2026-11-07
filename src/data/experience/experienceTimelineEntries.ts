@@ -17,6 +17,7 @@ export const experienceTimelineEntries: TimelineEntryProps[] = [
     right: [{ markdown: OSAGProjects }],
   },
   {
+    showDivider: false,
     span: [{ markdown: GrapeSolutionsTakeaways, variant: "takeaway" }],
   },
   {
@@ -34,6 +35,7 @@ export const experienceTimelineEntries: TimelineEntryProps[] = [
     right: [{ markdown: CarrierStartFrontend }],
   },
   {
+    from: "2019",
     left: [
       {
         image: {
@@ -52,7 +54,6 @@ export const experienceTimelineEntries: TimelineEntryProps[] = [
   },
   {
     from: "2018",
-    to: "2019",
     left: [
       {
         markdown: UniStart,
