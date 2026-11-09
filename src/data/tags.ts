@@ -97,6 +97,10 @@ export const tags = {
     label: "Copilot",
     color: "magenta",
   },
+  loopEngineering: {
+    label: "Loop engineering",
+    color: "teal",
+  },
   agenticWorkflows: {
     label: "Agentic workflows",
     color: "rgb(79 70 229)",

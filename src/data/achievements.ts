@@ -13,7 +13,7 @@ export type Achievement = {
 export const achievements: Achievement[] = [
   {
     title: "Agentic Loop & Orchestration Setup",
-    tags: tagList("agenticWorkflows", "aiSkills", "copilot", "github"),
+    tags: tagList("loopEngineering", "agenticWorkflows", "aiSkills", "copilot", "github"),
     company: "Open Systems AG",
     location: "Switzerland",
     summary:
